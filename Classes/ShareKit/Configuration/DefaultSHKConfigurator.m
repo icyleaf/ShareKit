@@ -276,20 +276,17 @@
 }
 // Evernote - http://www.evernote.com/about/developer/api/
 /*	You need to set to sandbox until you get approved by evernote. If you use sandbox, you can use it with special sandbox user account only. You can create it here: https://sandbox.evernote.com/Registration.action
+    If you already have a consumer-key and secret which have been created with the old username/password authentication system
+    (created before May 2012) you have to get a new consumer-key and secret, as the old one is not accepted by the new authentication
+    system.
  // Sandbox
- #define SHKEvernoteUserStoreURL    @"https://sandbox.evernote.com/edam/user"
- #define SHKEvernoteNetStoreURLBase @"http://sandbox.evernote.com/edam/note/"
+ #define SHKEvernoteHost    @"sandbox.evernote.com"
  
  // Or production
- #define SHKEvernoteUserStoreURL    @"https://www.evernote.com/edam/user"
- #define SHKEvernoteNetStoreURLBase @"http://www.evernote.com/edam/note/"
+ #define SHKEvernoteHost    @"www.evernote.com"
  */
 
-- (NSString*)evernoteUserStoreURL {
-	return @"";
-}
-
-- (NSString*)evernoteNetStoreURLBase {
+- (NSString*)evernoteHost {
 	return @"";
 }
 
@@ -396,15 +393,12 @@
 - (NSNumber*)shareMenuAlphabeticalOrder {
 	return [NSNumber numberWithInt:0];// Setting this to 1 will show list in Alphabetical Order, setting to 0 will follow the order in SHKShares.plist
 }
-// Append 'Shared With 'Signature to Email (and related forms)
-- (NSNumber*)sharedWithSignature {
-	return [NSNumber numberWithInt:0];
-}
-// Name of the plist file that defines the class names of the sharers to use. Usually should not be changed, but 
-// this allows you to subclass a sharer and have the subclass be used.
+
+/* Name of the plist file that defines the class names of the sharers to use. Usually should not be changed, but this allows you to subclass a sharer and have the subclass be used. Also helps, if you want to exclude some sharers - you can create your own plist, and add it to your project. This way you do not need to change original SHKSharers.plist, which is a part of subproject - this allows you upgrade easily as you did not change ShareKit itself */
 - (NSString*)sharersPlistName {
 	return @"SHKSharers.plist";
 }
+
 // SHKActionSheet settings
 - (NSNumber*)showActionSheetMoreButton {
 	return [NSNumber numberWithBool:true];// Setting this to true will show More... button in SHKActionSheet, setting to false will leave the button out.
@@ -416,13 +410,13 @@
  These values are used to define the default favorite sharers appearing on ShareKit's action sheet.
  */
 - (NSArray*)defaultFavoriteURLSharers {
-    return [NSArray arrayWithObjects:@"SHKTwitter",@"SHKFacebook",@"SHKReadability", @"SHKReadItLater",@"SHKVkontakte", nil];
+    return [NSArray arrayWithObjects:@"SHKTwitter",@"SHKFacebook", @"SHKReadItLater", nil];
 }
 - (NSArray*)defaultFavoriteImageSharers {
-    return [NSArray arrayWithObjects:@"SHKMail",@"SHKFacebook", @"SHKCopy",@"SHKVkontakte", nil];
+    return [NSArray arrayWithObjects:@"SHKMail",@"SHKFacebook", @"SHKCopy", nil];
 }
 - (NSArray*)defaultFavoriteTextSharers {
-    return [NSArray arrayWithObjects:@"SHKMail",@"SHKTwitter",@"SHKFacebook",@"SHKVkontakte", @"SHKLinkedIn", nil];
+    return [NSArray arrayWithObjects:@"SHKMail",@"SHKTwitter",@"SHKFacebook", nil];
 }
 - (NSArray*)defaultFavoriteFileSharers {
     return [NSArray arrayWithObjects:@"SHKMail",@"SHKEvernote", nil];
@@ -440,10 +434,6 @@
  check out http://getsharekit.com/customize
  */
 
-// turn on to use placeholders in edit fields instead of labels to the left for input fields.
-- (NSNumber*)usePlaceholders {
-	return [NSNumber numberWithBool:false];
-}
 /*
  Advanced Configuration
  ----------------------
@@ -474,5 +464,56 @@
  ------------------
  see DefaultSHKConfigurator.h
  */
+
+/*
+ SHKItem sharer specific values defaults
+ -------------------------------------
+ These settings can be left as is. SHKItem is what you put your data in and inject to ShareKit to actually share. Some sharers might be instructed to share the item in specific ways, e.g. SHKPrint's print quality, SHKMail's send to specified recipients etc. Sometimes you need to change the default behaviour - you can do it here globally, or per share during share item (SHKItem) composing. Example is in the demo app - ExampleShareLink.m - share method */
+
+/* SHKPrint */
+
+- (NSNumber*)printOutputType {    
+    return [NSNumber numberWithInt:UIPrintInfoOutputPhoto];
+}
+
+/* SHKMail */
+
+//constructed during runtime from user input in shareForm by default
+- (NSString*)mailBody {
+    return nil;
+}
+
+- (NSNumber*)isMailHTML {
+    return [NSNumber numberWithInt:1];
+}
+
+//user enters them in MFMailComposeViewController by default. Should be array of NSStrings.
+- (NSArray*)mailToRecipients {
+    return nil;
+}
+
+//used only if you share image. Values from 1.0 to 0.0 (maximum compression).
+- (NSNumber*)mailJPGQuality {
+    return [NSNumber numberWithFloat:1];
+}
+
+// append 'Sent from <appName>' signature to Email
+- (NSNumber*)sharedWithSignature {
+	return [NSNumber numberWithInt:0];
+}
+
+/* SHKFacebook */
+
+//when you share URL on Facebook, FBDialog scans the page and fills picture and description automagically by default. Use these item properties to set your own.
+- (NSString *)facebookURLSharePictureURI {
+    return nil;
+}
+
+- (NSString *)facebookURLShareDescription {
+    return nil;
+}
+
+
+
 
 @end
