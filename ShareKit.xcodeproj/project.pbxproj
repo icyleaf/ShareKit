@@ -69,20 +69,6 @@
 		7A0F9200156BA2A0009CB40A /* SHKDiigo.m in Sources */ = {isa = PBXBuildFile; fileRef = B7EFCD8B14C6B966004910F1 /* SHKDiigo.m */; };
 		7A0F9201156BA2A0009CB40A /* SHKVkontakteOAuthView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5AA3B6149625460064DB24 /* SHKVkontakteOAuthView.m */; };
 		7A0F9202156BA2A0009CB40A /* SHKVkontakte.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5AA3BA149625460064DB24 /* SHKVkontakte.m */; };
-		7A0F9203156BA2A0009CB40A /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7A0F9204156BA2A0009CB40A /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7A0F9205156BA2A0009CB40A /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7A0F9206156BA2A0009CB40A /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7A0F9207156BA2A0009CB40A /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7A0F9208156BA2A0009CB40A /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7A0F9209156BA2A0009CB40A /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7A0F920A156BA2A0009CB40A /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7A0F920B156BA2A0009CB40A /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7A0F920C156BA2A0009CB40A /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7A0F920D156BA2A0009CB40A /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7A0F920E156BA2A0009CB40A /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7A0F920F156BA2A0009CB40A /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7A0F9210156BA2A0009CB40A /* (null) in Sources */ = {isa = PBXBuildFile; };
 		7A0F9211156BA2A0009CB40A /* SHKEvernote.m in Sources */ = {isa = PBXBuildFile; fileRef = 4379F2B11291AC9700D2A41E /* SHKEvernote.m */; };
 		7A0F921C156BA2A0009CB40A /* SHKFacebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A536DD11DBE3B9004A1712 /* SHKFacebook.m */; };
 		7A0F921D156BA2A0009CB40A /* NSError+SHKFoursquareV2.m in Sources */ = {isa = PBXBuildFile; fileRef = C0276D7514336ACC00C93FAA /* NSError+SHKFoursquareV2.m */; };
@@ -139,7 +125,6 @@
 		7A28824A1553CC6F007DC379 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7AC22D1B14580A2000126878 /* FBDialog.bundle */; };
 		7A2882571553D7E1007DC379 /* SHKSharers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43A536AC11DBE3B9004A1712 /* SHKSharers.plist */; };
 		7A2882581553FEE6007DC379 /* SHKEvernote.md in Resources */ = {isa = PBXBuildFile; fileRef = 4379F2B21291AC9700D2A41E /* SHKEvernote.md */; };
-		7A28825D1553FFB4007DC379 /* ShareKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7AB5360F1552E26800171BCE /* ShareKit.bundle */; };
 		7A28825E15540175007DC379 /* libShareKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB5342E1552AADD00171BCE /* libShareKit.a */; };
 		7A2B025614A342D800E68A4C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A2B025514A342D800E68A4C /* CFNetwork.framework */; };
 		7A3C61EE147520B700C47D14 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A3C61ED147520B700C47D14 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -191,20 +176,6 @@
 		7AB5350A1552BE7D00171BCE /* SHKDiigo.m in Sources */ = {isa = PBXBuildFile; fileRef = B7EFCD8B14C6B966004910F1 /* SHKDiigo.m */; };
 		7AB5350B1552BE7D00171BCE /* SHKVkontakteOAuthView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5AA3B6149625460064DB24 /* SHKVkontakteOAuthView.m */; };
 		7AB5350D1552BE7D00171BCE /* SHKVkontakte.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5AA3BA149625460064DB24 /* SHKVkontakte.m */; };
-		7AB535101552BE7D00171BCE /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7AB535121552BE7D00171BCE /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7AB535141552BE7D00171BCE /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7AB535161552BE7D00171BCE /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7AB535181552BE7D00171BCE /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7AB5351A1552BE7D00171BCE /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7AB5351D1552BE7D00171BCE /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7AB535201552BE7D00171BCE /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7AB535221552BE7D00171BCE /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7AB535241552BE7D00171BCE /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7AB535281552BE7D00171BCE /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7AB5352A1552BE7D00171BCE /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7AB5352D1552BE7D00171BCE /* (null) in Sources */ = {isa = PBXBuildFile; };
-		7AB5352F1552BE7D00171BCE /* (null) in Sources */ = {isa = PBXBuildFile; };
 		7AB535311552BE7D00171BCE /* SHKEvernote.m in Sources */ = {isa = PBXBuildFile; fileRef = 4379F2B11291AC9700D2A41E /* SHKEvernote.m */; };
 		7AB535351552BE7D00171BCE /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC22D2814580A2000126878 /* NSObject+SBJSON.m */; };
 		7AB535371552BE7D00171BCE /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC22D2A14580A2000126878 /* NSString+SBJSON.m */; };
@@ -247,7 +218,6 @@
 		7AB535891552BE7D00171BCE /* SHKOAuthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A536FB11DBE3B9004A1712 /* SHKOAuthView.m */; };
 		7AB5358B1552BE7D00171BCE /* SHKShareMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A536FD11DBE3B9004A1712 /* SHKShareMenu.m */; };
 		7AB5358F1552BE7D00171BCE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A536B411DBE3B9004A1712 /* Reachability.m */; };
-		7AB5FAB514D30AC700795BA9 /* SHKXMLResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB5FAB414D30AC700795BA9 /* SHKXMLResponseParser.m */; };
 		7AB804F115AC79D8004FB430 /* GCOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 42EDC75E156CFBF400E3303E /* GCOAuth.m */; };
 		7AB804F315AC79D8004FB430 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 42EDC761156CFBF400E3303E /* NSData+Base64.m */; };
 		7AB804F715AC7A21004FB430 /* TBinaryProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 42EDC76E156CFBF400E3303E /* TBinaryProtocol.m */; };
@@ -282,29 +252,80 @@
 		7ABCDBB1157757D1003BBFFD /* SHKFormFieldCellOptionPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ABCDBAE157757D1003BBFFD /* SHKFormFieldCellOptionPicker.h */; };
 		7ABCDBB2157757D1003BBFFD /* SHKFormFieldCellOptionPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ABCDBAF157757D1003BBFFD /* SHKFormFieldCellOptionPicker.m */; };
 		7ABCDBB3157757D1003BBFFD /* SHKFormFieldCellOptionPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ABCDBAF157757D1003BBFFD /* SHKFormFieldCellOptionPicker.m */; };
-		7AC22D3314580A2000126878 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7AC22D1B14580A2000126878 /* FBDialog.bundle */; };
-		7AC22D3414580A2000126878 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC22D2814580A2000126878 /* NSObject+SBJSON.m */; };
-		7AC22D3514580A2000126878 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC22D2A14580A2000126878 /* NSString+SBJSON.m */; };
-		7AC22D3614580A2000126878 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC22D2C14580A2000126878 /* SBJSON.m */; };
-		7AC22D3714580A2000126878 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC22D2E14580A2000126878 /* SBJsonBase.m */; };
-		7AC22D3814580A2000126878 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC22D3014580A2000126878 /* SBJsonParser.m */; };
-		7AC22D3914580A2000126878 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC22D3214580A2000126878 /* SBJsonWriter.m */; };
-		7AC22D3A14580A2000126878 /* FBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC22D1F14580A2000126878 /* FBRequest.m */; };
-		7AC22D3B14580A2000126878 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC22D2014580A2000126878 /* Facebook.m */; };
-		7AC22D3C14580A2000126878 /* FBLoginDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC22D2314580A2000126878 /* FBLoginDialog.m */; };
-		7AC22D3D14580A2000126878 /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AC22D2514580A2000126878 /* FBDialog.m */; };
 		7ACA93FD156D192100E7006E /* FBFrictionlessRequestSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ACA93FB156D192100E7006E /* FBFrictionlessRequestSettings.h */; };
 		7ACA93FE156D192100E7006E /* FBFrictionlessRequestSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ACA93FC156D192100E7006E /* FBFrictionlessRequestSettings.m */; };
-		7AF2523814F0499E00CE8709 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AF2523714F0499E00CE8709 /* JSONKit.m */; };
-		90E765A61418F2480026B656 /* ShareKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 90E765A51418F2480026B656 /* ShareKit.bundle */; };
-		A57772B414BA0748003FC744 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = A57772B314BA0748003FC744 /* SSKeychain.m */; };
-		A57772BC14BA1900003FC744 /* ObjectiveFlickr.m in Sources */ = {isa = PBXBuildFile; fileRef = A57772B714BA1900003FC744 /* ObjectiveFlickr.m */; };
-		A57772BD14BA1900003FC744 /* OFUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = A57772B914BA1900003FC744 /* OFUtilities.m */; };
-		A57772BE14BA1900003FC744 /* OFXMLMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A57772BB14BA1900003FC744 /* OFXMLMapper.m */; };
-		AA511B8014C893A10022332B /* SHKFormOptionController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA511B7F14C893A10022332B /* SHKFormOptionController.m */; };
-		AC1A7B2A1522C15B009B9E6A /* SHKSinaWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1A7B291522C15B009B9E6A /* SHKSinaWeibo.m */; };
-		AC1A7B32152312DF009B9E6A /* SHKNetEaseWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1A7B31152312DF009B9E6A /* SHKNetEaseWeibo.m */; };
-		AC2A835E1557FEDB005EF457 /* ROError.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A830B1557FEDB005EF457 /* ROError.m */; };
+		961DD5CD15AFCF2E00BF89A8 /* SHKSinaWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1A7B291522C15B009B9E6A /* SHKSinaWeibo.m */; };
+		961DD5CE15AFCF3A00BF89A8 /* SHKDouban.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC4336D1512CD1C00B2953E /* SHKDouban.m */; };
+		961DD5CF15AFCF4600BF89A8 /* SHKNetEaseWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1A7B31152312DF009B9E6A /* SHKNetEaseWeibo.m */; };
+		961DD5D015AFCF9300BF89A8 /* SHKTencentWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A91AE15522BEA001F9418 /* SHKTencentWeibo.m */; };
+		961DD5D115AFCF9300BF89A8 /* TencentOAMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A91B215523084001F9418 /* TencentOAMutableURLRequest.m */; };
+		961DD5D215AFCF9300BF89A8 /* TencentOAuthView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9448FC15528E6B0011692C /* TencentOAuthView.m */; };
+		961DD5D315AFCF9300BF89A8 /* ROError.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A830B1557FEDB005EF457 /* ROError.m */; };
+		961DD5D415AFCF9300BF89A8 /* Renren.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A831A1557FEDB005EF457 /* Renren.m */; };
+		961DD5D515AFCF9300BF89A8 /* ROAlbumsInfoRequestParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A831D1557FEDB005EF457 /* ROAlbumsInfoRequestParam.m */; };
+		961DD5D615AFCF9300BF89A8 /* ROCreateAlbumRequestParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A831F1557FEDB005EF457 /* ROCreateAlbumRequestParam.m */; };
+		961DD5D715AFCF9300BF89A8 /* ROGetFriendsInfoRequestParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83211557FEDB005EF457 /* ROGetFriendsInfoRequestParam.m */; };
+		961DD5D815AFCF9300BF89A8 /* ROGetFriendsRequestParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83231557FEDB005EF457 /* ROGetFriendsRequestParam.m */; };
+		961DD5D915AFCF9300BF89A8 /* ROPasswordFlowRequestParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83251557FEDB005EF457 /* ROPasswordFlowRequestParam.m */; };
+		961DD5DA15AFCF9300BF89A8 /* ROPublishPhotoRequestParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83271557FEDB005EF457 /* ROPublishPhotoRequestParam.m */; };
+		961DD5DB15AFCF9300BF89A8 /* RORequestParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83291557FEDB005EF457 /* RORequestParam.m */; };
+		961DD5DC15AFCF9300BF89A8 /* ROUserInfoRequestParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A832B1557FEDB005EF457 /* ROUserInfoRequestParam.m */; };
+		961DD5DD15AFCF9300BF89A8 /* ROAlbumResponseltem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A832E1557FEDB005EF457 /* ROAlbumResponseltem.m */; };
+		961DD5DE15AFCF9300BF89A8 /* ROCreateAlbumResponseItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83301557FEDB005EF457 /* ROCreateAlbumResponseItem.m */; };
+		961DD5DF15AFCF9300BF89A8 /* ROFriendResponseItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83321557FEDB005EF457 /* ROFriendResponseItem.m */; };
+		961DD5E015AFCF9300BF89A8 /* ROPublishPhotoResponseItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83341557FEDB005EF457 /* ROPublishPhotoResponseItem.m */; };
+		961DD5E115AFCF9300BF89A8 /* ROResponseItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83361557FEDB005EF457 /* ROResponseItem.m */; };
+		961DD5E215AFCF9300BF89A8 /* ROUserResponseItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83381557FEDB005EF457 /* ROUserResponseItem.m */; };
+		961DD5E315AFCF9300BF89A8 /* RODialog.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A833B1557FEDB005EF457 /* RODialog.m */; };
+		961DD5E415AFCF9300BF89A8 /* RORequest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A833D1557FEDB005EF457 /* RORequest.m */; };
+		961DD5E515AFCF9300BF89A8 /* ROResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A833F1557FEDB005EF457 /* ROResponse.m */; };
+		961DD5E615AFCF9300BF89A8 /* ROPublishPhotoDialogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83471557FEDB005EF457 /* ROPublishPhotoDialogModel.m */; };
+		961DD5E715AFCF9300BF89A8 /* ROPublishPhotoInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83491557FEDB005EF457 /* ROPublishPhotoInternal.m */; };
+		961DD5E815AFCF9300BF89A8 /* ROUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A834C1557FEDB005EF457 /* ROUtility.m */; };
+		961DD5E915AFCF9300BF89A8 /* ROCloseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A834F1557FEDB005EF457 /* ROCloseButton.m */; };
+		961DD5EA15AFCF9300BF89A8 /* ROGlobalStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83511557FEDB005EF457 /* ROGlobalStyle.m */; };
+		961DD5EB15AFCF9300BF89A8 /* ROImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83531557FEDB005EF457 /* ROImageView.m */; };
+		961DD5EC15AFCF9300BF89A8 /* SHKRenRen.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83551557FEDB005EF457 /* SHKRenRen.m */; };
+		961DD5ED15AFCF9300BF89A8 /* SHKPlurk.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A853D1558B16B005EF457 /* SHKPlurk.m */; };
+		961DD5EE15AFD01A00BF89A8 /* SHKDouban.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC4336D1512CD1C00B2953E /* SHKDouban.m */; };
+		961DD5EF15AFD01A00BF89A8 /* SHKSinaWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1A7B291522C15B009B9E6A /* SHKSinaWeibo.m */; };
+		961DD5F015AFD01A00BF89A8 /* SHKNetEaseWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1A7B31152312DF009B9E6A /* SHKNetEaseWeibo.m */; };
+		961DD5F115AFD01A00BF89A8 /* SHKTencentWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A91AE15522BEA001F9418 /* SHKTencentWeibo.m */; };
+		961DD5F215AFD01A00BF89A8 /* TencentOAMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A91B215523084001F9418 /* TencentOAMutableURLRequest.m */; };
+		961DD5F315AFD01A00BF89A8 /* TencentOAuthView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9448FC15528E6B0011692C /* TencentOAuthView.m */; };
+		961DD5F415AFD01A00BF89A8 /* ROError.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A830B1557FEDB005EF457 /* ROError.m */; };
+		961DD5F515AFD01A00BF89A8 /* ROAlbumsInfoRequestParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A831D1557FEDB005EF457 /* ROAlbumsInfoRequestParam.m */; };
+		961DD5F615AFD01A00BF89A8 /* ROCreateAlbumRequestParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A831F1557FEDB005EF457 /* ROCreateAlbumRequestParam.m */; };
+		961DD5F715AFD01A00BF89A8 /* ROGetFriendsInfoRequestParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83211557FEDB005EF457 /* ROGetFriendsInfoRequestParam.m */; };
+		961DD5F815AFD01A00BF89A8 /* ROGetFriendsRequestParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83231557FEDB005EF457 /* ROGetFriendsRequestParam.m */; };
+		961DD5F915AFD01A00BF89A8 /* ROPasswordFlowRequestParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83251557FEDB005EF457 /* ROPasswordFlowRequestParam.m */; };
+		961DD5FA15AFD01A00BF89A8 /* ROPublishPhotoRequestParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83271557FEDB005EF457 /* ROPublishPhotoRequestParam.m */; };
+		961DD5FB15AFD01A00BF89A8 /* RORequestParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83291557FEDB005EF457 /* RORequestParam.m */; };
+		961DD5FC15AFD01A00BF89A8 /* ROUserInfoRequestParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A832B1557FEDB005EF457 /* ROUserInfoRequestParam.m */; };
+		961DD5FD15AFD01A00BF89A8 /* ROAlbumResponseltem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A832E1557FEDB005EF457 /* ROAlbumResponseltem.m */; };
+		961DD5FE15AFD01A00BF89A8 /* ROCreateAlbumResponseItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83301557FEDB005EF457 /* ROCreateAlbumResponseItem.m */; };
+		961DD5FF15AFD01A00BF89A8 /* ROFriendResponseItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83321557FEDB005EF457 /* ROFriendResponseItem.m */; };
+		961DD60015AFD01A00BF89A8 /* ROPublishPhotoResponseItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83341557FEDB005EF457 /* ROPublishPhotoResponseItem.m */; };
+		961DD60115AFD01A00BF89A8 /* ROResponseItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83361557FEDB005EF457 /* ROResponseItem.m */; };
+		961DD60215AFD01A00BF89A8 /* ROUserResponseItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83381557FEDB005EF457 /* ROUserResponseItem.m */; };
+		961DD60315AFD01A00BF89A8 /* RODialog.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A833B1557FEDB005EF457 /* RODialog.m */; };
+		961DD60415AFD01A00BF89A8 /* RORequest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A833D1557FEDB005EF457 /* RORequest.m */; };
+		961DD60515AFD01A00BF89A8 /* ROResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A833F1557FEDB005EF457 /* ROResponse.m */; };
+		961DD60615AFD01A00BF89A8 /* RODialogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83421557FEDB005EF457 /* RODialogModel.m */; };
+		961DD60715AFD01A00BF89A8 /* RODialogView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83441557FEDB005EF457 /* RODialogView.m */; };
+		961DD60815AFD01A00BF89A8 /* ROPublishPhotoDialogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83471557FEDB005EF457 /* ROPublishPhotoDialogModel.m */; };
+		961DD60915AFD01A00BF89A8 /* ROPublishPhotoInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83491557FEDB005EF457 /* ROPublishPhotoInternal.m */; };
+		961DD60A15AFD01A00BF89A8 /* ROCloseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A834F1557FEDB005EF457 /* ROCloseButton.m */; };
+		961DD60B15AFD01A00BF89A8 /* ROGlobalStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83511557FEDB005EF457 /* ROGlobalStyle.m */; };
+		961DD60C15AFD01A00BF89A8 /* ROImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83531557FEDB005EF457 /* ROImageView.m */; };
+		961DD60D15AFD01A00BF89A8 /* SHKRenRen.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83551557FEDB005EF457 /* SHKRenRen.m */; };
+		961DD60E15AFD01A00BF89A8 /* SHKPlurk.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A853D1558B16B005EF457 /* SHKPlurk.m */; };
+		961DD60F15AFD15100BF89A8 /* RODialogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83421557FEDB005EF457 /* RODialogModel.m */; };
+		961DD61015AFD15100BF89A8 /* RODialogView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83441557FEDB005EF457 /* RODialogView.m */; };
+		961DD61115AFD18600BF89A8 /* Renren.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A831A1557FEDB005EF457 /* Renren.m */; };
+		961DD61215AFD18600BF89A8 /* ROUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A834C1557FEDB005EF457 /* ROUtility.m */; };
+		961DD61315AFD18600BF89A8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 43A536B411DBE3B9004A1712 /* Reachability.m */; };
+		961DD61415AFD20F00BF89A8 /* ShareKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7AB5360F1552E26800171BCE /* ShareKit.bundle */; };
 		AC2A835F1557FEDB005EF457 /* bottom-bar.png in Resources */ = {isa = PBXBuildFile; fileRef = AC2A830D1557FEDB005EF457 /* bottom-bar.png */; };
 		AC2A83601557FEDB005EF457 /* bottom-bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC2A830E1557FEDB005EF457 /* bottom-bar@2x.png */; };
 		AC2A83611557FEDB005EF457 /* head-frame.png in Resources */ = {isa = PBXBuildFile; fileRef = AC2A830F1557FEDB005EF457 /* head-frame.png */; };
@@ -317,49 +338,6 @@
 		AC2A83681557FEDB005EF457 /* renren-logo-top-bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC2A83161557FEDB005EF457 /* renren-logo-top-bar@2x.png */; };
 		AC2A83691557FEDB005EF457 /* small-button-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = AC2A83171557FEDB005EF457 /* small-button-normal.png */; };
 		AC2A836A1557FEDB005EF457 /* small-button-normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC2A83181557FEDB005EF457 /* small-button-normal@2x.png */; };
-		AC2A836B1557FEDB005EF457 /* Renren.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A831A1557FEDB005EF457 /* Renren.m */; };
-		AC2A836C1557FEDB005EF457 /* ROAlbumsInfoRequestParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A831D1557FEDB005EF457 /* ROAlbumsInfoRequestParam.m */; };
-		AC2A836D1557FEDB005EF457 /* ROCreateAlbumRequestParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A831F1557FEDB005EF457 /* ROCreateAlbumRequestParam.m */; };
-		AC2A836E1557FEDB005EF457 /* ROGetFriendsInfoRequestParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83211557FEDB005EF457 /* ROGetFriendsInfoRequestParam.m */; };
-		AC2A836F1557FEDB005EF457 /* ROGetFriendsRequestParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83231557FEDB005EF457 /* ROGetFriendsRequestParam.m */; };
-		AC2A83701557FEDB005EF457 /* ROPasswordFlowRequestParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83251557FEDB005EF457 /* ROPasswordFlowRequestParam.m */; };
-		AC2A83711557FEDB005EF457 /* ROPublishPhotoRequestParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83271557FEDB005EF457 /* ROPublishPhotoRequestParam.m */; };
-		AC2A83721557FEDB005EF457 /* RORequestParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83291557FEDB005EF457 /* RORequestParam.m */; };
-		AC2A83731557FEDB005EF457 /* ROUserInfoRequestParam.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A832B1557FEDB005EF457 /* ROUserInfoRequestParam.m */; };
-		AC2A83741557FEDB005EF457 /* ROAlbumResponseltem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A832E1557FEDB005EF457 /* ROAlbumResponseltem.m */; };
-		AC2A83751557FEDB005EF457 /* ROCreateAlbumResponseItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83301557FEDB005EF457 /* ROCreateAlbumResponseItem.m */; };
-		AC2A83761557FEDB005EF457 /* ROFriendResponseItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83321557FEDB005EF457 /* ROFriendResponseItem.m */; };
-		AC2A83771557FEDB005EF457 /* ROPublishPhotoResponseItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83341557FEDB005EF457 /* ROPublishPhotoResponseItem.m */; };
-		AC2A83781557FEDB005EF457 /* ROResponseItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83361557FEDB005EF457 /* ROResponseItem.m */; };
-		AC2A83791557FEDB005EF457 /* ROUserResponseItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83381557FEDB005EF457 /* ROUserResponseItem.m */; };
-		AC2A837A1557FEDB005EF457 /* RODialog.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A833B1557FEDB005EF457 /* RODialog.m */; };
-		AC2A837B1557FEDB005EF457 /* RORequest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A833D1557FEDB005EF457 /* RORequest.m */; };
-		AC2A837C1557FEDB005EF457 /* ROResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A833F1557FEDB005EF457 /* ROResponse.m */; };
-		AC2A837D1557FEDB005EF457 /* RODialogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83421557FEDB005EF457 /* RODialogModel.m */; };
-		AC2A837E1557FEDB005EF457 /* RODialogView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83441557FEDB005EF457 /* RODialogView.m */; };
-		AC2A837F1557FEDB005EF457 /* ROPublishPhotoDialogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83471557FEDB005EF457 /* ROPublishPhotoDialogModel.m */; };
-		AC2A83801557FEDB005EF457 /* ROPublishPhotoInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83491557FEDB005EF457 /* ROPublishPhotoInternal.m */; };
-		AC2A83811557FEDB005EF457 /* ROUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A834C1557FEDB005EF457 /* ROUtility.m */; };
-		AC2A83821557FEDB005EF457 /* ROCloseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A834F1557FEDB005EF457 /* ROCloseButton.m */; };
-		AC2A83831557FEDB005EF457 /* ROGlobalStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83511557FEDB005EF457 /* ROGlobalStyle.m */; };
-		AC2A83841557FEDB005EF457 /* ROImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83531557FEDB005EF457 /* ROImageView.m */; };
-		AC2A83851557FEDB005EF457 /* SHKRenRen.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A83551557FEDB005EF457 /* SHKRenRen.m */; };
-		AC2A85401558B16B005EF457 /* SHKPlurk.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A853D1558B16B005EF457 /* SHKPlurk.m */; };
-		AC2A91AF15522BEA001F9418 /* SHKTencentWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A91AE15522BEA001F9418 /* SHKTencentWeibo.m */; };
-		AC2A91B315523084001F9418 /* TencentOAMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2A91B215523084001F9418 /* TencentOAMutableURLRequest.m */; };
-		AC9448FD15528E6B0011692C /* TencentOAuthView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9448FC15528E6B0011692C /* TencentOAuthView.m */; };
-		ACC433701512CD1C00B2953E /* SHKDouban.m in Sources */ = {isa = PBXBuildFile; fileRef = ACC4336D1512CD1C00B2953E /* SHKDouban.m */; };
-		B7EFCD8C14C6B966004910F1 /* SHKDiigo.m in Sources */ = {isa = PBXBuildFile; fileRef = B7EFCD8B14C6B966004910F1 /* SHKDiigo.m */; };
-		BA465F1F14CC3C5A00B52394 /* SHKPrint.m in Sources */ = {isa = PBXBuildFile; fileRef = BA465F1E14CC3C5A00B52394 /* SHKPrint.m */; };
-		C0276D7C14336ACE00C93FAA /* NSError+SHKFoursquareV2.m in Sources */ = {isa = PBXBuildFile; fileRef = C0276D7514336ACC00C93FAA /* NSError+SHKFoursquareV2.m */; };
-		C0276D7D14336ACE00C93FAA /* SHKFoursquareV2CheckInForm.m in Sources */ = {isa = PBXBuildFile; fileRef = C0276D7714336ACD00C93FAA /* SHKFoursquareV2CheckInForm.m */; };
-		C0276D7E14336ACE00C93FAA /* SHKFoursquareV2Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = C0276D7914336ACD00C93FAA /* SHKFoursquareV2Venue.m */; };
-		C0276D7F14336ACE00C93FAA /* SHKFoursquareV2VenuesForm.m in Sources */ = {isa = PBXBuildFile; fileRef = C0276D7B14336ACE00C93FAA /* SHKFoursquareV2VenuesForm.m */; };
-		C042A6211430AB7800DF9AF6 /* SHKFoursquareV2.m in Sources */ = {isa = PBXBuildFile; fileRef = C042A6201430AB7800DF9AF6 /* SHKFoursquareV2.m */; };
-		C042A6241430B35300DF9AF6 /* SHKFoursquareV2OAuthView.m in Sources */ = {isa = PBXBuildFile; fileRef = C042A6231430B35300DF9AF6 /* SHKFoursquareV2OAuthView.m */; };
-		C05E48091430D9BC008F2366 /* SHKFoursquareV2Request.m in Sources */ = {isa = PBXBuildFile; fileRef = C05E48081430D9BC008F2366 /* SHKFoursquareV2Request.m */; };
-		C0AD00F8142B7B6D000862D9 /* SHKLinkedIn.m in Sources */ = {isa = PBXBuildFile; fileRef = C0AD00F3142B7B6D000862D9 /* SHKLinkedIn.m */; };
-		C0AD00F9142B7B6D000862D9 /* SHKLinkedInOAMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C0AD00F5142B7B6D000862D9 /* SHKLinkedInOAMutableURLRequest.m */; };
 		C0D3077B147BDC8100E74EA3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0D3077A147BDC8100E74EA3 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
@@ -1987,14 +1965,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A28825D1553FFB4007DC379 /* ShareKit.bundle in Resources */,
+				961DD61415AFD20F00BF89A8 /* ShareKit.bundle in Resources */,
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				28F335F11007B36200424DE2 /* RootViewController.xib in Resources */,
 				43A5382811DBE480004A1712 /* example.pdf in Resources */,
 				43A5382911DBE480004A1712 /* sanFran.jpg in Resources */,
 				43C91D1D11EB963600F31FAE /* MainWindow-iPad.xib in Resources */,
-				90E765A61418F2480026B656 /* ShareKit.bundle in Resources */,
-				7AC22D3314580A2000126878 /* FBDialog.bundle in Resources */,
 				AC2A835F1557FEDB005EF457 /* bottom-bar.png in Resources */,
 				AC2A83601557FEDB005EF457 /* bottom-bar@2x.png in Resources */,
 				AC2A83611557FEDB005EF457 /* head-frame.png in Resources */,
@@ -2036,69 +2012,6 @@
 				43A5383A11DBE493004A1712 /* RootViewController.m in Sources */,
 				43A5383B11DBE493004A1712 /* ShareKitAppDelegate.m in Sources */,
 				7AA40570146F1D6400685C81 /* ShareKitDemoConfigurator.m in Sources */,
-				7AC22D3414580A2000126878 /* NSObject+SBJSON.m in Sources */,
-				7AC22D3514580A2000126878 /* NSString+SBJSON.m in Sources */,
-				7AC22D3614580A2000126878 /* SBJSON.m in Sources */,
-				7AC22D3714580A2000126878 /* SBJsonBase.m in Sources */,
-				7AC22D3814580A2000126878 /* SBJsonParser.m in Sources */,
-				7AC22D3914580A2000126878 /* SBJsonWriter.m in Sources */,
-				7AC22D3A14580A2000126878 /* FBRequest.m in Sources */,
-				7AC22D3B14580A2000126878 /* Facebook.m in Sources */,
-				7AC22D3C14580A2000126878 /* FBLoginDialog.m in Sources */,
-				7AC22D3D14580A2000126878 /* FBDialog.m in Sources */,
-				C0AD00F8142B7B6D000862D9 /* SHKLinkedIn.m in Sources */,
-				C0AD00F9142B7B6D000862D9 /* SHKLinkedInOAMutableURLRequest.m in Sources */,
-				C042A6211430AB7800DF9AF6 /* SHKFoursquareV2.m in Sources */,
-				C042A6241430B35300DF9AF6 /* SHKFoursquareV2OAuthView.m in Sources */,
-				C05E48091430D9BC008F2366 /* SHKFoursquareV2Request.m in Sources */,
-				C0276D7C14336ACE00C93FAA /* NSError+SHKFoursquareV2.m in Sources */,
-				C0276D7D14336ACE00C93FAA /* SHKFoursquareV2CheckInForm.m in Sources */,
-				C0276D7E14336ACE00C93FAA /* SHKFoursquareV2Venue.m in Sources */,
-				C0276D7F14336ACE00C93FAA /* SHKFoursquareV2VenuesForm.m in Sources */,
-				A57772B414BA0748003FC744 /* SSKeychain.m in Sources */,
-				A57772BC14BA1900003FC744 /* ObjectiveFlickr.m in Sources */,
-				A57772BD14BA1900003FC744 /* OFUtilities.m in Sources */,
-				A57772BE14BA1900003FC744 /* OFXMLMapper.m in Sources */,
-				AA511B8014C893A10022332B /* SHKFormOptionController.m in Sources */,
-				BA465F1F14CC3C5A00B52394 /* SHKPrint.m in Sources */,
-				7AB5FAB514D30AC700795BA9 /* SHKXMLResponseParser.m in Sources */,
-				7AF2523814F0499E00CE8709 /* JSONKit.m in Sources */,
-				ACC433701512CD1C00B2953E /* SHKDouban.m in Sources */,
-				AC1A7B2A1522C15B009B9E6A /* SHKSinaWeibo.m in Sources */,
-				AC1A7B32152312DF009B9E6A /* SHKNetEaseWeibo.m in Sources */,
-				B7EFCD8C14C6B966004910F1 /* SHKDiigo.m in Sources */,
-				AC2A91AF15522BEA001F9418 /* SHKTencentWeibo.m in Sources */,
-				AC2A91B315523084001F9418 /* TencentOAMutableURLRequest.m in Sources */,
-				AC9448FD15528E6B0011692C /* TencentOAuthView.m in Sources */,
-				AC2A835E1557FEDB005EF457 /* ROError.m in Sources */,
-				AC2A836B1557FEDB005EF457 /* Renren.m in Sources */,
-				AC2A836C1557FEDB005EF457 /* ROAlbumsInfoRequestParam.m in Sources */,
-				AC2A836D1557FEDB005EF457 /* ROCreateAlbumRequestParam.m in Sources */,
-				AC2A836E1557FEDB005EF457 /* ROGetFriendsInfoRequestParam.m in Sources */,
-				AC2A836F1557FEDB005EF457 /* ROGetFriendsRequestParam.m in Sources */,
-				AC2A83701557FEDB005EF457 /* ROPasswordFlowRequestParam.m in Sources */,
-				AC2A83711557FEDB005EF457 /* ROPublishPhotoRequestParam.m in Sources */,
-				AC2A83721557FEDB005EF457 /* RORequestParam.m in Sources */,
-				AC2A83731557FEDB005EF457 /* ROUserInfoRequestParam.m in Sources */,
-				AC2A83741557FEDB005EF457 /* ROAlbumResponseltem.m in Sources */,
-				AC2A83751557FEDB005EF457 /* ROCreateAlbumResponseItem.m in Sources */,
-				AC2A83761557FEDB005EF457 /* ROFriendResponseItem.m in Sources */,
-				AC2A83771557FEDB005EF457 /* ROPublishPhotoResponseItem.m in Sources */,
-				AC2A83781557FEDB005EF457 /* ROResponseItem.m in Sources */,
-				AC2A83791557FEDB005EF457 /* ROUserResponseItem.m in Sources */,
-				AC2A837A1557FEDB005EF457 /* RODialog.m in Sources */,
-				AC2A837B1557FEDB005EF457 /* RORequest.m in Sources */,
-				AC2A837C1557FEDB005EF457 /* ROResponse.m in Sources */,
-				AC2A837D1557FEDB005EF457 /* RODialogModel.m in Sources */,
-				AC2A837E1557FEDB005EF457 /* RODialogView.m in Sources */,
-				AC2A837F1557FEDB005EF457 /* ROPublishPhotoDialogModel.m in Sources */,
-				AC2A83801557FEDB005EF457 /* ROPublishPhotoInternal.m in Sources */,
-				AC2A83811557FEDB005EF457 /* ROUtility.m in Sources */,
-				AC2A83821557FEDB005EF457 /* ROCloseButton.m in Sources */,
-				AC2A83831557FEDB005EF457 /* ROGlobalStyle.m in Sources */,
-				AC2A83841557FEDB005EF457 /* ROImageView.m in Sources */,
-				AC2A83851557FEDB005EF457 /* SHKRenRen.m in Sources */,
-				AC2A85401558B16B005EF457 /* SHKPlurk.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2106,6 +2019,42 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				961DD61115AFD18600BF89A8 /* Renren.m in Sources */,
+				961DD61215AFD18600BF89A8 /* ROUtility.m in Sources */,
+				961DD61315AFD18600BF89A8 /* Reachability.m in Sources */,
+				961DD5EE15AFD01A00BF89A8 /* SHKDouban.m in Sources */,
+				961DD5EF15AFD01A00BF89A8 /* SHKSinaWeibo.m in Sources */,
+				961DD5F015AFD01A00BF89A8 /* SHKNetEaseWeibo.m in Sources */,
+				961DD5F115AFD01A00BF89A8 /* SHKTencentWeibo.m in Sources */,
+				961DD5F215AFD01A00BF89A8 /* TencentOAMutableURLRequest.m in Sources */,
+				961DD5F315AFD01A00BF89A8 /* TencentOAuthView.m in Sources */,
+				961DD5F415AFD01A00BF89A8 /* ROError.m in Sources */,
+				961DD5F515AFD01A00BF89A8 /* ROAlbumsInfoRequestParam.m in Sources */,
+				961DD5F615AFD01A00BF89A8 /* ROCreateAlbumRequestParam.m in Sources */,
+				961DD5F715AFD01A00BF89A8 /* ROGetFriendsInfoRequestParam.m in Sources */,
+				961DD5F815AFD01A00BF89A8 /* ROGetFriendsRequestParam.m in Sources */,
+				961DD5F915AFD01A00BF89A8 /* ROPasswordFlowRequestParam.m in Sources */,
+				961DD5FA15AFD01A00BF89A8 /* ROPublishPhotoRequestParam.m in Sources */,
+				961DD5FB15AFD01A00BF89A8 /* RORequestParam.m in Sources */,
+				961DD5FC15AFD01A00BF89A8 /* ROUserInfoRequestParam.m in Sources */,
+				961DD5FD15AFD01A00BF89A8 /* ROAlbumResponseltem.m in Sources */,
+				961DD5FE15AFD01A00BF89A8 /* ROCreateAlbumResponseItem.m in Sources */,
+				961DD5FF15AFD01A00BF89A8 /* ROFriendResponseItem.m in Sources */,
+				961DD60015AFD01A00BF89A8 /* ROPublishPhotoResponseItem.m in Sources */,
+				961DD60115AFD01A00BF89A8 /* ROResponseItem.m in Sources */,
+				961DD60215AFD01A00BF89A8 /* ROUserResponseItem.m in Sources */,
+				961DD60315AFD01A00BF89A8 /* RODialog.m in Sources */,
+				961DD60415AFD01A00BF89A8 /* RORequest.m in Sources */,
+				961DD60515AFD01A00BF89A8 /* ROResponse.m in Sources */,
+				961DD60615AFD01A00BF89A8 /* RODialogModel.m in Sources */,
+				961DD60715AFD01A00BF89A8 /* RODialogView.m in Sources */,
+				961DD60815AFD01A00BF89A8 /* ROPublishPhotoDialogModel.m in Sources */,
+				961DD60915AFD01A00BF89A8 /* ROPublishPhotoInternal.m in Sources */,
+				961DD60A15AFD01A00BF89A8 /* ROCloseButton.m in Sources */,
+				961DD60B15AFD01A00BF89A8 /* ROGlobalStyle.m in Sources */,
+				961DD60C15AFD01A00BF89A8 /* ROImageView.m in Sources */,
+				961DD60D15AFD01A00BF89A8 /* SHKRenRen.m in Sources */,
+				961DD60E15AFD01A00BF89A8 /* SHKPlurk.m in Sources */,
 				7A0F91D3156BA2A0009CB40A /* SHKCustomActionSheet.m in Sources */,
 				7A0F91D4156BA2A0009CB40A /* SHKCustomFormController.m in Sources */,
 				7A0F91D5156BA2A0009CB40A /* SHKCustomFormFieldCell.m in Sources */,
@@ -2149,20 +2098,6 @@
 				7A0F9200156BA2A0009CB40A /* SHKDiigo.m in Sources */,
 				7A0F9201156BA2A0009CB40A /* SHKVkontakteOAuthView.m in Sources */,
 				7A0F9202156BA2A0009CB40A /* SHKVkontakte.m in Sources */,
-				7A0F9203156BA2A0009CB40A /* (null) in Sources */,
-				7A0F9204156BA2A0009CB40A /* (null) in Sources */,
-				7A0F9205156BA2A0009CB40A /* (null) in Sources */,
-				7A0F9206156BA2A0009CB40A /* (null) in Sources */,
-				7A0F9207156BA2A0009CB40A /* (null) in Sources */,
-				7A0F9208156BA2A0009CB40A /* (null) in Sources */,
-				7A0F9209156BA2A0009CB40A /* (null) in Sources */,
-				7A0F920A156BA2A0009CB40A /* (null) in Sources */,
-				7A0F920B156BA2A0009CB40A /* (null) in Sources */,
-				7A0F920C156BA2A0009CB40A /* (null) in Sources */,
-				7A0F920D156BA2A0009CB40A /* (null) in Sources */,
-				7A0F920E156BA2A0009CB40A /* (null) in Sources */,
-				7A0F920F156BA2A0009CB40A /* (null) in Sources */,
-				7A0F9210156BA2A0009CB40A /* (null) in Sources */,
 				7A0F9211156BA2A0009CB40A /* SHKEvernote.m in Sources */,
 				7A0F921C156BA2A0009CB40A /* SHKFacebook.m in Sources */,
 				7A0F921D156BA2A0009CB40A /* NSError+SHKFoursquareV2.m in Sources */,
@@ -2206,6 +2141,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				961DD60F15AFD15100BF89A8 /* RODialogModel.m in Sources */,
+				961DD61015AFD15100BF89A8 /* RODialogView.m in Sources */,
+				961DD5D015AFCF9300BF89A8 /* SHKTencentWeibo.m in Sources */,
+				961DD5D115AFCF9300BF89A8 /* TencentOAMutableURLRequest.m in Sources */,
+				961DD5D215AFCF9300BF89A8 /* TencentOAuthView.m in Sources */,
+				961DD5D315AFCF9300BF89A8 /* ROError.m in Sources */,
+				961DD5D415AFCF9300BF89A8 /* Renren.m in Sources */,
+				961DD5D515AFCF9300BF89A8 /* ROAlbumsInfoRequestParam.m in Sources */,
+				961DD5D615AFCF9300BF89A8 /* ROCreateAlbumRequestParam.m in Sources */,
+				961DD5D715AFCF9300BF89A8 /* ROGetFriendsInfoRequestParam.m in Sources */,
+				961DD5D815AFCF9300BF89A8 /* ROGetFriendsRequestParam.m in Sources */,
+				961DD5D915AFCF9300BF89A8 /* ROPasswordFlowRequestParam.m in Sources */,
+				961DD5DA15AFCF9300BF89A8 /* ROPublishPhotoRequestParam.m in Sources */,
+				961DD5DB15AFCF9300BF89A8 /* RORequestParam.m in Sources */,
+				961DD5DC15AFCF9300BF89A8 /* ROUserInfoRequestParam.m in Sources */,
+				961DD5DD15AFCF9300BF89A8 /* ROAlbumResponseltem.m in Sources */,
+				961DD5DE15AFCF9300BF89A8 /* ROCreateAlbumResponseItem.m in Sources */,
+				961DD5DF15AFCF9300BF89A8 /* ROFriendResponseItem.m in Sources */,
+				961DD5E015AFCF9300BF89A8 /* ROPublishPhotoResponseItem.m in Sources */,
+				961DD5E115AFCF9300BF89A8 /* ROResponseItem.m in Sources */,
+				961DD5E215AFCF9300BF89A8 /* ROUserResponseItem.m in Sources */,
+				961DD5E315AFCF9300BF89A8 /* RODialog.m in Sources */,
+				961DD5E415AFCF9300BF89A8 /* RORequest.m in Sources */,
+				961DD5E515AFCF9300BF89A8 /* ROResponse.m in Sources */,
+				961DD5E615AFCF9300BF89A8 /* ROPublishPhotoDialogModel.m in Sources */,
+				961DD5E715AFCF9300BF89A8 /* ROPublishPhotoInternal.m in Sources */,
+				961DD5E815AFCF9300BF89A8 /* ROUtility.m in Sources */,
+				961DD5E915AFCF9300BF89A8 /* ROCloseButton.m in Sources */,
+				961DD5EA15AFCF9300BF89A8 /* ROGlobalStyle.m in Sources */,
+				961DD5EB15AFCF9300BF89A8 /* ROImageView.m in Sources */,
+				961DD5EC15AFCF9300BF89A8 /* SHKRenRen.m in Sources */,
+				961DD5ED15AFCF9300BF89A8 /* SHKPlurk.m in Sources */,
+				961DD5CF15AFCF4600BF89A8 /* SHKNetEaseWeibo.m in Sources */,
+				961DD5CE15AFCF3A00BF89A8 /* SHKDouban.m in Sources */,
+				961DD5CD15AFCF2E00BF89A8 /* SHKSinaWeibo.m in Sources */,
 				7AB534AD1552BE7D00171BCE /* SHKCustomActionSheet.m in Sources */,
 				7AB534AF1552BE7D00171BCE /* SHKCustomFormController.m in Sources */,
 				7AB534B11552BE7D00171BCE /* SHKCustomFormFieldCell.m in Sources */,
@@ -2251,20 +2221,6 @@
 				7AB5350A1552BE7D00171BCE /* SHKDiigo.m in Sources */,
 				7AB5350B1552BE7D00171BCE /* SHKVkontakteOAuthView.m in Sources */,
 				7AB5350D1552BE7D00171BCE /* SHKVkontakte.m in Sources */,
-				7AB535101552BE7D00171BCE /* (null) in Sources */,
-				7AB535121552BE7D00171BCE /* (null) in Sources */,
-				7AB535141552BE7D00171BCE /* (null) in Sources */,
-				7AB535161552BE7D00171BCE /* (null) in Sources */,
-				7AB535181552BE7D00171BCE /* (null) in Sources */,
-				7AB5351A1552BE7D00171BCE /* (null) in Sources */,
-				7AB5351D1552BE7D00171BCE /* (null) in Sources */,
-				7AB535201552BE7D00171BCE /* (null) in Sources */,
-				7AB535221552BE7D00171BCE /* (null) in Sources */,
-				7AB535241552BE7D00171BCE /* (null) in Sources */,
-				7AB535281552BE7D00171BCE /* (null) in Sources */,
-				7AB5352A1552BE7D00171BCE /* (null) in Sources */,
-				7AB5352D1552BE7D00171BCE /* (null) in Sources */,
-				7AB5352F1552BE7D00171BCE /* (null) in Sources */,
 				7AB535311552BE7D00171BCE /* SHKEvernote.m in Sources */,
 				7AB535351552BE7D00171BCE /* NSObject+SBJSON.m in Sources */,
 				7AB535371552BE7D00171BCE /* NSString+SBJSON.m in Sources */,
