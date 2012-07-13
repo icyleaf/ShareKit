@@ -39,8 +39,6 @@
 extern NSString * const SHKHideCurrentViewFinishedNotification;
 
 @class SHKActionSheet;
-@class SHKViewControllerWrapper;
-
 
 @interface SHK : NSObject 
 {
@@ -125,3 +123,9 @@ NSString * SHKEncodeURL(NSURL * value);
 NSString * SHKFlattenHTML(NSString * value, BOOL preserveLineBreaks);
 NSString * SHKLocalizedString(NSString* key, ...);
 void SHKSwizzle(Class c, SEL orig, SEL newClassName);
+
+@interface NSFileManager (DoNotBackup)
+
+- (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL;
+
+@end

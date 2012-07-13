@@ -198,9 +198,8 @@
 - (NSString*)readItLaterKey {
 	return @"45aT6Vfvg66eWNebybd680gu13pdba3d";
 }
-
-// Diigo - http://www.diigo.com/api_keys/new/
--(NSString *)diigoKey {
+// Diigo - http://diigo.com/api_dev
+-(NSString*)diigoKey {
   return @"f401ddc3546cdf3c";
 }
 // Twitter - http://dev.twitter.com/apps/new
@@ -250,20 +249,16 @@
  #define SHKEvernoteNetStoreURLBase @"http://www.evernote.com/edam/note/"
  */
 
-- (NSString*)evernoteUserStoreURL {
-	return @"https://sandbox.evernote.com/edam/user";
-}
-
-- (NSString*)evernoteNetStoreURLBase {
-	return @"http://sandbox.evernote.com/edam/note/";
+- (NSString *)evernoteHost {
+    return @"sandbox.evernote.com";
 }
 
 - (NSString*)evernoteConsumerKey {
-	return @"vilemkurz";
+	return @"hansmeyer0711-4037";
 }
 
 - (NSString*)evernoteSecret {
-	return @"e58755227940c41f";
+	return @"e9d68467cd4c1aeb";
 }
 // Flickr - http://www.flickr.com/services/apps/create/
 /*
