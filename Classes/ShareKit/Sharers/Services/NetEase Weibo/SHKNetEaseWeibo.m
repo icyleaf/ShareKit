@@ -606,4 +606,17 @@ static NSString *const kSHKNetEaseWeiboUserInfo = @"kSHKNetEaseWeiboUserInfo";
 	[self sendDidFailWithError:error];
 }
 
+#pragma mark - Request
+
+//- (void)tokenAuthorize
+//{
+//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?oauth_token=%@&client_type=mobile",
+//                                       authorizeURL.absoluteString,
+//                                       requestToken.key]];
+//    
+//	SHKOAuthView *auth = [[SHKOAuthView alloc] initWithURL:url delegate:self];
+//	[[SHK currentHelper] showViewController:auth];
+//	[auth release];
+//}
+
 @end

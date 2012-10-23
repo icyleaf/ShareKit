@@ -15,6 +15,7 @@
 	<key>services</key>
 	<array>
 		<string>SHKDouban</string>
+		<string>SHKKippt</string>
 		<string>SHKSinaWeibo</string>
 		<string>SHKNetEaseWeibo</string>
 		<string>SHKTencentWeibo</string>
@@ -35,6 +36,7 @@
 		<string>SHKFlickr</string>
 		<string>SHKLinkedIn</string>
 		<string>SHKFoursquareV2</string>
+		<string>SHKInstagram</string>
 	</array>
 </dict>
 </plist>

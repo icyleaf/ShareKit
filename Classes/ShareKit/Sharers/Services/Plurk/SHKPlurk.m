@@ -426,7 +426,7 @@
 		// this is the error message for revoked access
 		if ([errorMessage isEqualToString:@"Invalid / used nonce"] || [errorMessage isEqualToString:@"Could not authenticate with OAuth."])
 		{
-			[self sendDidFailShouldRelogin];
+            [self sendDidFailWithError:[SHK error:SHKLocalizedString(@"Could not authenticate you. Please relogin.")] shouldRelogin:YES];
 		}
 		else
 		{

@@ -1,9 +1,8 @@
 //
-//  SHKFlickr
-//  Flickr
+//  SHKInstagram.h
+//  PhotoToaster
 //
-//  Created by Neil Bostrom on 23/02/2011.
-//
+//  Created by Steve Troppoli on 8/5/11.
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
 //  in the Software without restriction, including without limitation the rights
@@ -22,30 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
-//
 
 #import <Foundation/Foundation.h>
-#import "SHK.h"
 #import "SHKSharer.h"
-#import "SHKOAuthView.h"
-#import "ObjectiveFlickr.h"
-#import "SHKFormOptionController.h"
 
-@interface SHKFlickr : SHKSharer<	SHKOAuthViewDelegate,
-									SHKFormOptionControllerOptionProvider> {
-	
-    OFFlickrAPIContext *flickrContext;
-	OFFlickrAPIRequest *flickrRequest;
-	NSString *flickrUserName;
-	NSString* postedPhotoID;
-	NSArray* fullOptionsData;
-	int postGroupCurIndex;									
-}
+@interface SHKInstagram : SHKSharer <UIDocumentInteractionControllerDelegate>
 
-@property (nonatomic, readonly) OFFlickrAPIContext *flickrContext;
-@property (nonatomic, retain) NSString *flickrUserName;
-
-- (void)sendPhoto;
-- (NSData*) generateImageData;
+- (NSData*) generateImageData:(UIImage*)image;
 
 @end

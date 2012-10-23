@@ -92,7 +92,7 @@
 
 "There was an error saving to Pinboard" = "保存到 Pinboard 的过程中出错";
 
-"Sorry, Instapaper did not accept your credentials. Please try again." = "抱歉，Instapaper 无法验证您的账号，请重试。";
+"Sorry, %@ did not accept your credentials. Please try again." = "抱歉，%@ 无法验证您的账号，请重试。";
 
 "Sorry, Instapaper encountered an error. Please try again." = "抱歉，Instapaper 碰到了一个问题，请重试。";
 
