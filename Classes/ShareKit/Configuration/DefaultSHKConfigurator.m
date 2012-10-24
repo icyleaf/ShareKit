@@ -60,6 +60,16 @@
  */
 
 // Sina Weibo - http://open.weibo.com/
+
+/*
+ If you want to force use of old-style, for example to ensure
+ sina weibo accounts don't end up in the devices account store, set this to true.
+ */
+- (NSNumber*)forcePreSinaWeiboAccess
+{
+    return [NSNumber numberWithBool:false];
+}
+
 - (NSString*)sinaWeiboConsumerKey {
 	return @"";
 }

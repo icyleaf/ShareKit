@@ -40,7 +40,12 @@
  leaving that decision up to the user.
  */
 
-// Sina Weibo 
+// Sina Weibo
+- (NSNumber *)forcePreSinaWeiboAccess
+{
+    return [NSNumber numberWithBool:false];
+}
+
 - (NSString*)sinaWeiboConsumerKey {
 	return @"1631351849";
 }
@@ -330,7 +335,7 @@
  These values are used to define the default favorite sharers appearing on ShareKit's action sheet.
  */
 - (NSArray*)defaultFavoriteURLSharers {
-    return [NSArray arrayWithObjects:@"SHKDouban",@"SHKSinaWeibo",@"SHKNetEaseWeibo", nil];
+    return [NSArray arrayWithObjects:@"SHKDouban",@"SHKSinaWeibo",@"SHKRenren",@"SHKNetEaseWeibo", nil];
 }
 - (NSArray*)defaultFavoriteImageSharers {
     return [NSArray arrayWithObjects:@"SHKSinaWeibo",@"SHKNetEaseWeibo", nil];

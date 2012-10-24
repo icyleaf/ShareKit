@@ -50,6 +50,7 @@
 - (NSArray*)defaultFavoriteImageSharers;
 - (NSArray*)defaultFavoriteTextSharers;
 - (NSArray*)defaultFavoriteFileSharers;
+- (NSNumber*)forcePreSinaWeiboAccess;
 - (NSString*)sinaWeiboConsumerKey;
 - (NSString*)sinaWeiboConsumerSecret;
 - (NSString*)sinaWeiboCallbackUrl;
