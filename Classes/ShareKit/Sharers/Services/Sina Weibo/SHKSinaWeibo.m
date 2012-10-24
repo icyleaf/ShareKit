@@ -28,9 +28,11 @@
 
 
 #import "SHKSinaWeibo.h"
-#import "JSONKit.h"
 #import "SHKConfiguration.h"
 #import "NSMutableDictionary+NSNullsToEmptyStrings.h"
+#import "JSONKit.h"
+#import "SHKiOS6SinaWeibo.h"
+#import <Social/Social.h>
 
 #define API_DOMAIN  @"http://api.t.sina.com.cn"
 
@@ -43,6 +45,7 @@ static NSString *const kSHKSinaWeiboUserInfo = @"kSHKSinaWeiboUserInfo";
 - (void)shortenURLFinished:(SHKRequest *)aRequest;
 - (BOOL)validateItemAfterUserEdit;
 - (void)handleUnsuccessfulTicket:(NSData *)data;
+- (BOOL)socialFrameworkAvailable;
 
 @end
 
@@ -116,12 +119,35 @@ static NSString *const kSHKSinaWeiboUserInfo = @"kSHKSinaWeiboUserInfo";
 
 - (void)share 
 {
+    if ([self socialFrameworkAvailable]) {
+		
+		SHKSharer *sharer =[SHKiOS6SinaWeibo shareItem:self.item];
+        sharer.quiet = self.quiet;
+        sharer.shareDelegate = self.shareDelegate;
+		[SHKSinaWeibo logout];//to clean credentials - we will not need them anymore
+		return;
+	}
+    
 	BOOL itemPrepared = [self prepareItem];
 	
 	//the only case item is not prepared is when we wait for URL to be shortened on background thread. In this case [super share] is called in callback method
 	if (itemPrepared) {
 		[super share];
 	}
+}
+
+- (BOOL)socialFrameworkAvailable
+{
+    if ([SHKCONFIG(forcePreSinaWeiboAccess) boolValue])
+    {
+        return NO;
+    }
+    
+    if(NSClassFromString(@"SLComposeViewController") && [SLComposeViewController isAvailableForServiceType:SLServiceTypeSinaWeibo]) {
+        return YES;
+    }
+    
+    return NO;
 }
 
 #pragma mark -

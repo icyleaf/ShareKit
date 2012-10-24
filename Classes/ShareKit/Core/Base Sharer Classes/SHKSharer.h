@@ -162,6 +162,7 @@ typedef enum
 #pragma mark API Implementation
 
 -(NSString *)tagStringJoinedBy:(NSString *)joinString allowedCharacters:(NSCharacterSet *)charset tagPrefix:(NSString *)prefixString;
+-(NSString *)tagStringJoinedBy:(NSString *)joinString allowedCharacters:(NSCharacterSet *)charset tagPrefix:(NSString *)prefixString forChina:(BOOL)forChina;
 
 - (BOOL)validateItem;
 - (BOOL)tryToSend;
