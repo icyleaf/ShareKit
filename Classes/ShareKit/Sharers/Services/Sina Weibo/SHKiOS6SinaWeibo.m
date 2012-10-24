@@ -74,8 +74,8 @@
 
     NSString *statusBody = [NSString stringWithString:(self.item.shareType == SHKShareTypeText ? item.text : item.title)];
     
-    NSString *tagString = [self tagStringJoinedBy:@" " allowedCharacters:[NSCharacterSet alphanumericCharacterSet] tagPrefix:@"#"];
-    if ([tagString length] > 0) statusBody = [statusBody stringByAppendingFormat:@" %@",tagString];
+    NSString *tagString = [self tagStringJoinedBy:@" " allowedCharacters:[NSCharacterSet alphanumericCharacterSet] tagPrefix:@"#" forChina:YES];
+    if ([tagString length] > 0) statusBody = [statusBody stringByAppendingFormat:@" %@", tagString];
     
     // Trim string to fit 140 character max.
     NSUInteger textLength = [statusBody length] > 140 ? 140 : [statusBody length];
