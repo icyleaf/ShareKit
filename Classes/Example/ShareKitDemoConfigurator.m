@@ -47,7 +47,7 @@
 // sina weibo accounts don't end up in the devices account store, set this to true.
 - (NSNumber*)forcePreSinaWeiboAccess
 {
-    return [NSNumber numberWithBool:true];
+    return [NSNumber numberWithBool:false];
 }
 
 // Fill sina weibo App Key(Consumer Key) below and Do not forget to fill it on facebook developer ("URL Scheme Suffix").
