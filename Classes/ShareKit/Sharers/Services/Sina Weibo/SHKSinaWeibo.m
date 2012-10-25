@@ -32,49 +32,93 @@
 #import "NSMutableDictionary+NSNullsToEmptyStrings.h"
 #import "JSONKit.h"
 #import "SHKiOS6SinaWeibo.h"
+
 #import <Social/Social.h>
 
 #define API_DOMAIN  @"http://api.t.sina.com.cn"
+
+static NSString *const kSHKStoredItemKey=@"kSHKSinaWeiboStoredItem";
+static NSString *const kSHKSinaWeiboAccessTokenKey=@"AccessTokenKey";
+static NSString *const kSHKSinaWeiboExpiryDateKey=@"ExpirationDateKey";
+static NSString *const kSHKSinaWeiboUserIdKey =@"UserIDKey";
+static NSString *const kSHKSinaWeiboRefreshTokenKey =@"refresh_token";
 
 static NSString *const kSHKSinaWeiboUserInfo = @"kSHKSinaWeiboUserInfo";
 
 @interface SHKSinaWeibo ()
 
++ (SinaWeibo *)sinaWeibo;
++ (void)storeAuthData;
 - (BOOL)prepareItem;
 - (BOOL)shortenURL;
 - (void)shortenURLFinished:(SHKRequest *)aRequest;
 - (BOOL)validateItemAfterUserEdit;
-- (void)handleUnsuccessfulTicket:(NSData *)data;
 - (BOOL)socialFrameworkAvailable;
+
+- (void)showSinaWeiboForm;
 
 @end
 
 @implementation SHKSinaWeibo
 
-@synthesize xAuth;
-
-- (id)init
++ (SinaWeibo *)sinaWeibo
 {
-	if ((self = [super init]))
-	{		
-		// OAuth
-		self.consumerKey = SHKCONFIG(sinaWeiboConsumerKey);		
-		self.secretKey = SHKCONFIG(sinaWeiboConsumerSecret);
- 		self.authorizeCallbackURL = [NSURL URLWithString:SHKCONFIG(sinaWeiboCallbackUrl)];
-		
-		// xAuth
-		self.xAuth = [SHKCONFIG(sinaWeiboUseXAuth) boolValue] ? YES : NO;
-		
-		
-		// -- //
-		
-		
-		// You do not need to edit these, they are the same for everyone
-		self.authorizeURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/oauth/authorize", API_DOMAIN]];
-		self.requestURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/oauth/request_token", API_DOMAIN]];
-		self.accessURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/oauth/access_token", API_DOMAIN]];
-	}	
-	return self;
+    static SinaWeibo *sinaWeibo = nil;
+    @synchronized([SHKSinaWeibo class]) {
+        if (! sinaWeibo)
+        {
+            sinaWeibo = [[SinaWeibo alloc] initWithAppKey:SHKCONFIG(sinaWeiboConsumerKey)
+                                                appSecret:SHKCONFIG(sinaWeiboConsumerSecret)
+                                           appRedirectURI:SHKCONFIG(sinaWeiboCallbackUrl)
+                                              andDelegate:nil];
+            
+            NSDictionary *sinaweiboInfo = [[NSUserDefaults standardUserDefaults] objectForKey:kSHKStoredItemKey];
+            if ([sinaweiboInfo objectForKey:kSHKSinaWeiboAccessTokenKey]
+                && [sinaweiboInfo objectForKey:kSHKSinaWeiboExpiryDateKey]
+                && [sinaweiboInfo objectForKey:kSHKSinaWeiboUserIdKey])
+            {
+                sinaWeibo.accessToken = [sinaweiboInfo objectForKey:kSHKSinaWeiboAccessTokenKey];
+                sinaWeibo.expirationDate = [sinaweiboInfo objectForKey:kSHKSinaWeiboExpiryDateKey];
+                sinaWeibo.userID = [sinaweiboInfo objectForKey:kSHKSinaWeiboUserIdKey];
+            }
+        }
+    }
+    
+    return sinaWeibo;
+}
+
++ (void)storeAuthData
+{
+    SinaWeibo *sinaweibo = [SHKSinaWeibo sinaWeibo];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                      sinaweibo.accessToken, kSHKSinaWeiboAccessTokenKey,
+                                                      sinaweibo.expirationDate, kSHKSinaWeiboExpiryDateKey,
+                                                      sinaweibo.userID, kSHKSinaWeiboUserIdKey,
+                                                      sinaweibo.refreshToken, kSHKSinaWeiboRefreshTokenKey, nil]
+                                              forKey:kSHKStoredItemKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (BOOL)handleOpenURL:(NSURL*)url
+{
+    SinaWeibo *sinaWeibo = [SHKSinaWeibo sinaWeibo];
+    
+    // If app has "Application does not run in background" = YES,
+    // or was killed before it could return from Facebook SSO callback (from Safari or Facebook app)
+    if ( ! sinaWeibo.delegate)
+    {
+        SHKSinaWeibo *sinaWeiboSharer = [[SHKSinaWeibo alloc] init]; //released in sinaweiboDidLogIn
+        
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:kSHKStoredItemKey])
+        {
+            sinaWeiboSharer.pendingAction = SHKPendingShare;
+        }
+        
+        [sinaWeibo setDelegate:sinaWeiboSharer];
+    }
+    
+    return [sinaWeibo handleOpenURL:url];
 }
 
 
@@ -115,22 +159,52 @@ static NSString *const kSHKSinaWeiboUserInfo = @"kSHKSinaWeiboUserInfo";
 }
 
 #pragma mark -
+#pragma mark Authentication
+
+- (BOOL)isAuthorized
+{
+    SinaWeibo *sinaWeibo = [SHKSinaWeibo sinaWeibo];
+    if ([sinaWeibo isAuthValid]) return YES;
+    
+    NSDictionary *sinaweiboInfo = [[NSUserDefaults standardUserDefaults] objectForKey:kSHKSinaWeiboAccessTokenKey];
+    sinaWeibo.accessToken = [sinaweiboInfo objectForKey:kSHKSinaWeiboAccessTokenKey];
+    sinaWeibo.expirationDate = [sinaweiboInfo objectForKey:kSHKSinaWeiboExpiryDateKey];
+    sinaWeibo.userID = [sinaweiboInfo objectForKey:kSHKSinaWeiboUserIdKey];
+    
+    return [sinaWeibo isAuthValid];
+}
+
+- (void)promptAuthorization
+{
+	[[SHKSinaWeibo sinaWeibo] setDelegate:self];
+    [self retain]; // must retain, because SinaWeibo does not retain its delegates. Released in callback.
+	[[SHKSinaWeibo sinaWeibo] logIn];
+}
+
++ (void)logout
+{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kSHKStoredItemKey];
+    [[SHKSinaWeibo sinaWeibo] logOut];
+}
+
+#pragma mark -
 #pragma mark Commit Share
 
 - (void)share 
 {
-    if ([self socialFrameworkAvailable]) {
-		
+    if ([self socialFrameworkAvailable])
+    {
 		SHKSharer *sharer =[SHKiOS6SinaWeibo shareItem:self.item];
         sharer.quiet = self.quiet;
         sharer.shareDelegate = self.shareDelegate;
-		[SHKSinaWeibo logout];//to clean credentials - we will not need them anymore
+		[SHKSinaWeibo logout];// to clean credentials - we will not need them anymore
 		return;
 	}
     
 	BOOL itemPrepared = [self prepareItem];
 	
-	//the only case item is not prepared is when we wait for URL to be shortened on background thread. In this case [super share] is called in callback method
+	// the only case item is not prepared is when we wait for URL to be shortened on background thread.
+    // In this case [super share] is called in callback method
 	if (itemPrepared) {
 		[super share];
 	}
@@ -160,7 +234,6 @@ static NSString *const kSHKSinaWeiboUserInfo = @"kSHKSinaWeiboUserInfo";
 	{
 		BOOL isURLAlreadyShortened = [self shortenURL];
 		result = isURLAlreadyShortened;
-		
 	}
 	
 	else if (item.shareType == SHKShareTypeImage)
@@ -177,136 +250,26 @@ static NSString *const kSHKSinaWeiboUserInfo = @"kSHKSinaWeiboUserInfo";
 }
 
 #pragma mark -
-#pragma mark Authorization
-
-- (void)promptAuthorization
-{		
-	if (xAuth)
-		[super authorizationFormShow]; // xAuth process
-	
-	else
-		[super promptAuthorization]; // OAuth process		
-}
-
-+ (void)logout {
-	
-	[[NSUserDefaults standardUserDefaults] removeObjectForKey:kSHKSinaWeiboUserInfo];
-	[super logout];    
-}
-
-#pragma mark xAuth
-
-+ (NSString *)authorizationFormCaption
-{
-	return SHKLocalizedString(@"Create a free account at %@", @"weibo.com");
-}
-
-+ (NSArray *)authorizationFormFields
-{
-	if ([SHKCONFIG(sinaWeiboUserID) isEqualToString:@""])
-		return [super authorizationFormFields];
-	
-    NSString *followMeString = [SHKCONFIG(sinaWeiboScreenname) isEqualToString:@""] ? 
-        SHKLocalizedString(@"Follow us") : SHKLocalizedString(@"Follow %@", SHKCONFIG(sinaWeiboScreenname));
-    
-    return [NSArray arrayWithObjects:
-			[SHKFormFieldSettings label:SHKLocalizedString(@"Username") key:@"username" type:SHKFormFieldTypeText start:nil],
-			[SHKFormFieldSettings label:SHKLocalizedString(@"Password") key:@"password" type:SHKFormFieldTypePassword start:nil],
-			[SHKFormFieldSettings label:followMeString key:@"followMe" type:SHKFormFieldTypeSwitch start:SHKFormFieldSwitchOn],			
-			nil];
-}
-
-- (void)authorizationFormValidate:(SHKFormController *)form
-{
-	self.pendingForm = form;
-	[self tokenAccess];
-}
-
-- (void)tokenAccessModifyRequest:(OAMutableURLRequest *)oRequest
-{	
-	if (xAuth)
-	{
-		NSDictionary *formValues = [pendingForm formValues];
-		
-		OARequestParameter *username = [[[OARequestParameter alloc] initWithName:@"x_auth_username"
-                                                                           value:[formValues objectForKey:@"username"]] autorelease];
-		
-		OARequestParameter *password = [[[OARequestParameter alloc] initWithName:@"x_auth_password"
-                                                                           value:[formValues objectForKey:@"password"]] autorelease];
-		
-		OARequestParameter *mode = [[[OARequestParameter alloc] initWithName:@"x_auth_mode"
-                                                                       value:@"client_auth"] autorelease];
-		
-		[oRequest setParameters:[NSArray arrayWithObjects:username, password, mode, nil]];
-	}
-    else
-    {
-        if (pendingAction == SHKPendingRefreshToken)
-        {
-            if (accessToken.sessionHandle != nil)
-                [oRequest setOAuthParameterName:@"oauth_session_handle" withValue:accessToken.sessionHandle];
-        }
-        else
-            [oRequest setOAuthParameterName:@"oauth_verifier" withValue:[authorizeResponseQueryVars objectForKey:@"oauth_verifier"]];
-    }
-}
-
-- (void)tokenAccessTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data 
-{
-	if (xAuth) 
-	{
-		if (ticket.didSucceed)
-		{
-			[item setCustomValue:[[pendingForm formValues] objectForKey:@"followMe"] forKey:@"followMe"];
-			[pendingForm close];
-		}
-		
-		else
-		{
-			NSString *response = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
-			
-			SHKLog(@"tokenAccessTicket Response Body: %@", response);
-			
-			[self tokenAccessTicket:ticket didFailWithError:[SHK error:response]];
-			return;
-		}
-	}
-    
-	[super tokenAccessTicket:ticket didFinishWithData:data];		
-}
-
-
-#pragma mark -
 #pragma mark UI Implementation
 
 - (void)show
 {
-    if (item.shareType == SHKShareTypeURL)
-	{
-		[self showSinaWeiboForm];
-	}
-	
-    else if (item.shareType == SHKShareTypeImage)
-	{
-		[self showSinaWeiboForm];
-	}
-	
-	else if (item.shareType == SHKShareTypeText)
-	{
-		[self showSinaWeiboForm];
-	}
-    
-    else if (item.shareType == SHKShareTypeUserInfo)
+    if (item.shareType == SHKShareTypeUserInfo)
 	{
 		[self setQuiet:YES];
 		[self tryToSend];
 	}
+    
+    else
+    {
+        [self showSinaWeiboForm];
+    }
 }
 
 - (void)showSinaWeiboForm
 {
 	SHKFormControllerLargeTextField *rootView = [[SHKFormControllerLargeTextField alloc] initWithNibName:nil bundle:nil delegate:self];	
-	
+    
 	rootView.text = [item customValueForKey:@"status"];
 	rootView.maxTextLength = 140;
 	rootView.image = item.image;
@@ -409,215 +372,107 @@ static NSString *const kSHKSinaWeiboUserInfo = @"kSHKSinaWeiboUserInfo";
 }
 
 - (BOOL)send
-{	
-	// Check if we should send follow request too
-	if (xAuth && [item customBoolForSwitchKey:@"followMe"])
-		[self followMe];	
-	
-	if (![self validateItemAfterUserEdit])
+{
+	if ( ! [self validateItemAfterUserEdit])
 		return NO;
 	
-	switch (item.shareType) {
-			
-		case SHKShareTypeImage:            
-			[self sendImage];
-			break;
-			
-		case SHKShareTypeUserInfo:            
-//			[self sendUserInfo];
-			break;
-			
-		default:
-			[self sendStatus];
-			break;
-	}
-	
-	// Notify delegate
-	[self sendDidStart];	
-	
-	return YES;
-}
-
-- (void)sendStatus
-{
-	OAMutableURLRequest *oRequest = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/statuses/update.json", API_DOMAIN]]
-                                                                    consumer:consumer
-                                                                       token:accessToken
-                                                                       realm:nil
-                                                           signatureProvider:nil];
-	
-	[oRequest setHTTPMethod:@"POST"];
-	
-	OARequestParameter *statusParam = [[OARequestParameter alloc] initWithName:@"status"
-																		 value:[item customValueForKey:@"status"]];
-	NSArray *params = [NSArray arrayWithObjects:statusParam, nil];
-	[oRequest setParameters:params];
-	[statusParam release];
-	
-	OAAsynchronousDataFetcher *fetcher = [OAAsynchronousDataFetcher asynchronousFetcherWithRequest:oRequest
-                                                                                          delegate:self
-                                                                                 didFinishSelector:@selector(sendStatusTicket:didFinishWithData:)
-                                                                                   didFailSelector:@selector(sendStatusTicket:didFailWithError:)];	
-    
-	[fetcher start];
-	[oRequest release];
-}
-
-- (void)sendStatusTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data 
-{	
-	// TODO better error handling here
-    
-	if (ticket.didSucceed) 
-		[self sendDidFinish];
-	
-	else	
-	{		
-		[self handleUnsuccessfulTicket:data];
-	}
-}
-
-- (void)handleUnsuccessfulTicket:(NSData *)data {
-    SHKLog(@"%@", [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);
-    [self sendDidFailWithError:nil];
-}
-
-- (void)sendStatusTicket:(OAServiceTicket *)ticket didFailWithError:(NSError*)error
-{
-	[self sendDidFailWithError:error];
-}
-
-- (void)sendImage {
-	
-	NSURL *serviceURL = nil;
-	if([item customValueForKey:@"profile_update"]){
-		serviceURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/account/update_profile_image.json", API_DOMAIN]];
-	} else {
-		serviceURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/statuses/upload.json", API_DOMAIN]];
-	}
-	
-	OAMutableURLRequest *oRequest = [[OAMutableURLRequest alloc] initWithURL:serviceURL
-																	consumer:consumer
-																	   token:accessToken
-																	   realm:API_DOMAIN
-														   signatureProvider:signatureProvider];
-    [oRequest setHTTPMethod:@"POST"];
-    [oRequest prepare];
-    
-	CGFloat compression = 0.9f;
-	NSData *imageData = UIImageJPEGRepresentation([item image], compression);
-	
-	// TODO
-	// Note from Nate to creator of sendImage method - This seems like it could be a source of sluggishness.
-	// For example, if the image is large (say 3000px x 3000px for example), it would be better to resize the image
-	// to an appropriate size (max of img.ly) and then start trying to compress.
-	
-	while ([imageData length] > 700000 && compression > 0.1) {
-		// NSLog(@"Image size too big, compression more: current data size: %d bytes",[imageData length]);
-		compression -= 0.1;
-		imageData = UIImageJPEGRepresentation([item image], compression);
-		
-	}
-	
-	NSString *boundary = @"0xKhTmLbOuNdArY";
-	NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
-	[oRequest setValue:contentType forHTTPHeaderField:@"Content-Type"];
-	
-	NSMutableData *body = [NSMutableData data];
-	NSString *dispKey = @"";
-	if([item customValueForKey:@"profile_update"]){
-		dispKey = @"Content-Disposition: form-data; name=\"image\"; filename=\"upload.jpg\"\r\n";
-	} else {
-		dispKey = @"Content-Disposition: form-data; name=\"pic\"; filename=\"upload.jpg\"\r\n";
-	}
-    
-	[body appendData:[[NSString stringWithFormat:@"--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-	[body appendData:[dispKey dataUsingEncoding:NSUTF8StringEncoding]];
-	[body appendData:[@"Content-Type: image/jpg\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-	[body appendData:imageData];
-	[body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-	
-	if([item customValueForKey:@"profile_update"]){
-		// no ops
-	} else {
-		[body appendData:[[NSString stringWithFormat:@"--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-		[body appendData:[@"Content-Disposition: form-data; name=\"status\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-		[body appendData:[[item customValueForKey:@"status"] dataUsingEncoding:NSUTF8StringEncoding]];
-		[body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];	
-	}
-	
-	[body appendData:[[NSString stringWithFormat:@"--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-	
-	// setting the body of the post to the reqeust
-	[oRequest setHTTPBody:body];
-    
-	// Notify delegate
-	[self sendDidStart];
-    
-	// Start the request
-	OAAsynchronousDataFetcher *fetcher = [OAAsynchronousDataFetcher asynchronousFetcherWithRequest:oRequest
-																						  delegate:self
-																				 didFinishSelector:@selector(sendImageTicket:didFinishWithData:)
-																				   didFailSelector:@selector(sendImageTicket:didFailWithError:)];	
-	
-	[fetcher start];
-	
-	
-	[oRequest release];
-}
-
-- (void)sendImageTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data {
-	// TODO better error handling here
-    SHKLog(@"%@", [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);
-    
-	// NSLog([[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);
-	
-	if (ticket.didSucceed) {
-		[self sendDidFinish];
-		// Finished uploading Image, now need to posh the message and url in sina weibo
-		NSString *dataString = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
-		NSRange startingRange = [dataString rangeOfString:@"<url>" options:NSCaseInsensitiveSearch];
-		//NSLog(@"found start string at %d, len %d",startingRange.location,startingRange.length);
-		NSRange endingRange = [dataString rangeOfString:@"</url>" options:NSCaseInsensitiveSearch];
-		//NSLog(@"found end string at %d, len %d",endingRange.location,endingRange.length);
-		
-		if (startingRange.location != NSNotFound && endingRange.location != NSNotFound) {
-			NSString *urlString = [dataString substringWithRange:NSMakeRange(startingRange.location + startingRange.length, endingRange.location - (startingRange.location + startingRange.length))];
-			//NSLog(@"extracted string: %@",urlString);
-			[item setCustomValue:[NSString stringWithFormat:@"%@ %@",[item customValueForKey:@"status"],urlString] forKey:@"status"];
-			[self sendStatus];
+	else
+	{
+        SinaWeibo *sinaweibo = [SHKSinaWeibo sinaWeibo];
+        
+        if (item.shareType == SHKShareTypeImage && item.image)
+        {
+            [sinaweibo requestWithURL:@"statuses/upload.json"
+                               params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                       [item customValueForKey:@"status"], @"status",
+                                       item.image, @"pic", nil]
+                           httpMethod:@"POST"
+                             delegate:self];
 		}
+        
+        else
+        {
+            [sinaweibo requestWithURL:@"statuses/update.json"
+                               params:[NSMutableDictionary dictionaryWithObjectsAndKeys:[item customValueForKey:@"status"], @"status", nil]
+                           httpMethod:@"POST"
+                             delegate:self];
+        }
+        
+        [self retain]; // must retain, because SinaWeibo does not retain its delegates. Released in callback.
 		
+		// Notify delegate
+		[self sendDidStart];
 		
-	} else {
-		[self sendDidFailWithError:nil];
+		return YES;
 	}
+	
+	return NO;
 }
 
-- (void)sendImageTicket:(OAServiceTicket *)ticket didFailWithError:(NSError*)error {
-	[self sendDidFailWithError:error];
-}
+#pragma mark - Sina Weibo delegate methods
 
-
-- (void)followMe
+- (void)sinaweiboDidLogIn:(SinaWeibo *)sinaweibo
 {
-	// remove it so in case of other failures this doesn't get hit again
-	[item setCustomValue:nil forKey:@"followMe"];
+    [SHKSinaWeibo storeAuthData];
     
-	OAMutableURLRequest *oRequest = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/friendships/create/%@.json", API_DOMAIN, SHKCONFIG(sinaWeiboUserID)]]
-																	consumer:consumer
-																	   token:accessToken
-																	   realm:nil
-														   signatureProvider:nil];
+    [self authDidFinish:true];
 	
-	[oRequest setHTTPMethod:@"POST"];
+    if (self.item)
+        [self tryPendingAction];
+}
+
+- (void)sinaweiboDidLogOut:(SinaWeibo *)sinaweibo
+{
+    SHKLog(@"sinaweiboDidLogOut");
+    [SHKSinaWeibo logout];
     
-	OAAsynchronousDataFetcher *fetcher = [OAAsynchronousDataFetcher asynchronousFetcherWithRequest:oRequest
-                                                                                          delegate:nil // Currently not doing any error handling here.  If it fails, it's probably best not to bug the user to follow you again.
-                                                                                 didFinishSelector:nil
-                                                                                   didFailSelector:nil];	
-	
-	[fetcher start];
-	[oRequest release];
+    [self release]; // see [self send]
+}
+
+- (void)sinaweiboLogInDidCancel:(SinaWeibo *)sinaweibo
+{
+    SHKLog(@"sinaweiboLogInDidCancel");
+    
+    [self authDidFinish:NO]; 
+    [self release]; // see [self send]
+}
+
+- (void)sinaweibo:(SinaWeibo *)sinaweibo logInDidFailWithError:(NSError *)error
+{
+    SHKLog(@"sinaweibo logInDidFailWithError %@", error);
+    [self authDidFinish:NO];
+    
+    [self release]; // see [self send]
+}
+
+- (void)sinaweibo:(SinaWeibo *)sinaweibo accessTokenInvalidOrExpired:(NSError *)error
+{
+    SHKLog(@"sinaweiboAccessTokenInvalidOrExpired %@", error);
+    [SHKSinaWeibo logout];
+    
+    [self authDidFinish:NO];
+    
+    [self release]; // see [self send]
+}
+
+#pragma mark - SinaWeiboRequest Delegate
+
+- (void)request:(SinaWeiboRequest *)aRequest didFailWithError:(NSError *)error
+{
+    if ([aRequest.url hasSuffix:@"statuses/update.json"])
+    {
+        SHKLog(@"Post status failed with error : %@", error);
+    }
+    
+    [self sendDidFailWithError:error];
+    
+    [self release]; // see [self send]
+}
+
+- (void)request:(SinaWeiboRequest *)request didFinishLoadingWithResult:(id)result
+{
+    [self sendDidFinish];
+    [self release]; // see [self send]
 }
 
 @end

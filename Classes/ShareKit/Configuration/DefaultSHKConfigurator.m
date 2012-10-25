@@ -61,15 +61,21 @@
 
 // Sina Weibo - http://open.weibo.com/
 
-/*
- If you want to force use of old-style, for example to ensure
- sina weibo accounts don't end up in the devices account store, set this to true.
- */
+// If you want to force use of old-style, for example to ensure
+// sina weibo accounts don't end up in the devices account store, set this to true.
 - (NSNumber*)forcePreSinaWeiboAccess
 {
     return [NSNumber numberWithBool:false];
 }
 
+// Fill sina weibo App Key(Consumer Key) below and Do not forget to fill it on facebook developer ("URL Scheme Suffix").
+// Leave it blank unless you are sure of what you are doing.
+//
+// The CFBundleURLSchemes in your App-Info.plist should be "sinaweibosso." + App Key
+// Example:
+//    sinaWeiboConsumerKey = 1631351849
+//
+//    Your CFBundleURLSchemes entry: sinaweibosso.1631351849
 - (NSString*)sinaWeiboConsumerKey {
 	return @"";
 }
@@ -78,7 +84,8 @@
 	return @"";
 }
 
-// You need to set this if using OAuth (MUST be set, it could be any words)
+// You need to set this if using OAuth (MUST be set and SAME AS "Callback Url" of "OAuth 2.0 Auth Settings" on Sina Weibo open plaform.
+// Url like this: http://open.weibo.com/apps/{app_key}/info/advanced
 - (NSString*)sinaWeiboCallbackUrl {
 	return @"";
 }
