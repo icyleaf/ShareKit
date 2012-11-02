@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Tencent Weixin SDK' target in the 'Tencent Weixin SDK' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif

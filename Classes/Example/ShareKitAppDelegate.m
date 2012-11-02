@@ -12,6 +12,8 @@
 #import "SHKReadItLater.h"
 #import "SHKFacebook.h"
 #import "SHKSinaWeibo.h"
+#import "SHKTencentWeixin.h"
+
 #import "SHKConfiguration.h"
 #import "ShareKitDemoConfigurator.h"
 
@@ -40,6 +42,9 @@
 	[navigationController setToolbarHidden:NO];
 	
 	[self performSelector:@selector(testOffline) withObject:nil afterDelay:0.5];
+    
+    // Register Tencent Weixin App
+    [SHKTencentWeixin registerApp];
 	
 	return YES;
 }
@@ -61,6 +66,8 @@
         return [SHKFacebook handleOpenURL:url];
     else if ([scheme hasPrefix:[NSString stringWithFormat:@"sinaweibosso.%@", SHKCONFIG(sinaWeiboConsumerKey)]])
         return [SHKSinaWeibo handleOpenURL:url];
+    else if ([scheme hasPrefix:[NSString stringWithFormat:@"%@", SHKCONFIG(tencentWeixinAppId)]])
+        return [SHKTencentWeixin handleOpenURL:url];
     
     return YES;
 }

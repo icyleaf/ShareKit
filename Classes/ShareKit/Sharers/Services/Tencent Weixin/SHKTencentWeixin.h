@@ -1,8 +1,8 @@
 //
-//  SHKiOS6SinaWeibo.h
+//  SHKTencentWeixin.h
 //  ShareKit
 //
-//  Created by icyleaf on 12-10-23.
+//  Created by icyleaf on 12-11-2.
 //  Copyright 2012 icyleaf.com. All rights reserved.
 //
 
@@ -27,9 +27,18 @@
 //
 //
 
+#import <Foundation/Foundation.h>
+#import "SHKOAuthSharer.h"
+#import "SHKCustomFormControllerLargeTextField.h"
+#import "WXApi.h"
 
-#import "SHKSharer.h"
 
-@interface SHKiOS6SinaWeibo : SHKSharer
+@interface SHKTencentWeixin : SHKOAuthSharer <SHKFormControllerLargeTextFieldDelegate, WXApiDelegate>
+
++ (void) registerApp;
+
++ (BOOL)handleOpenURL:(NSURL*)url;
+
+- (void)showTencentWeixinForm;
 
 @end
