@@ -35,10 +35,20 @@
 
 @interface SHKTencentWeixin : SHKOAuthSharer <SHKFormControllerLargeTextFieldDelegate, WXApiDelegate>
 
-+ (void) registerApp;
+#pragma mark - Handle Wx SDK Methods
 
++ (void) registerApp;
 + (BOOL)handleOpenURL:(NSURL*)url;
 
+
+#pragma mark - UI Implementation
+
 - (void)showTencentWeixinForm;
+
+
+#pragma mark - Share API Methods
+
+- (void)sendStatus;
+- (void)sendImage;
 
 @end

@@ -108,7 +108,7 @@ static NSString *const kSHKSinaWeiboUserInfo = @"kSHKSinaWeiboUserInfo";
     // or was killed before it could return from Facebook SSO callback (from Safari or Facebook app)
     if ( ! sinaWeibo.delegate)
     {
-        SHKSinaWeibo *sinaWeiboSharer = [[SHKSinaWeibo alloc] init]; //released in sinaweiboDidLogIn
+        SHKSinaWeibo *sinaWeiboSharer = [[[SHKSinaWeibo alloc] init] autorelease]; //released in sinaweiboDidLogIn
         
         if ([[NSUserDefaults standardUserDefaults] objectForKey:kSHKStoredItemKey])
         {

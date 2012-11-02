@@ -38,6 +38,20 @@ static NSString *const kSHKTencentWeixinUserInfo = @"kSHKTencentWeixinUserInfo";
 
 @implementation SHKTencentWeixin
 
+
++ (SHKTencentWeixin *)sharedWeixin
+{
+    static SHKTencentWeixin *weixin = nil;
+    @synchronized([SHKTencentWeixin class]) {
+        if ( ! weixin)
+        {
+            weixin = [[SHKTencentWeixin alloc] init];
+        }
+    }
+    
+    return weixin;
+}
+
 + (void)registerApp
 {
     [WXApi registerApp:SHKCONFIG(tencentWeixinAppId)];
@@ -45,7 +59,7 @@ static NSString *const kSHKTencentWeixinUserInfo = @"kSHKTencentWeixinUserInfo";
 
 + (BOOL)handleOpenURL:(NSURL*)url
 {
-    return [WXApi handleOpenURL:url delegate:[[SHKTencentWeixin alloc] init]];
+    return [WXApi handleOpenURL:url delegate:[[[SHKTencentWeixin alloc] init] autorelease]];
 }
 
 
@@ -177,17 +191,87 @@ static NSString *const kSHKTencentWeixinUserInfo = @"kSHKTencentWeixinUserInfo";
 	return result;
 }
 
+- (BOOL)send
+{
+	if ( ! [self validateItemAfterUserEdit])
+		return NO;
+	
+    switch (item.shareType) {
+            
+        case SHKShareTypeURL:
+        case SHKShareTypeText:
+            [self sendStatus];
+            break;
+    
+        case SHKShareTypeImage:
+            [self sendImage];
+            break;
+		default:
+			break;
+	}
+	
+	// Notify delegate
+	[self sendDidStart];	
+	
+	return YES;
+}
+
+- (void)sendStatus
+{
+    SendMessageToWXReq *req = [[[SendMessageToWXReq alloc] init] autorelease];
+    req.bText = YES;
+    req.text = [item customValueForKey:@"status"];
+    
+    [WXApi sendReq:req];
+}
+
+- (void)sendImage
+{
+    CGFloat compression = 0.9f;
+	NSData *imageData = UIImageJPEGRepresentation([item image], compression);
+	
+	// TODO
+	// Note from Nate to creator of sendImage method - This seems like it could be a source of sluggishness.
+	// For example, if the image is large (say 3000px x 3000px for example), it would be better to resize the image
+	// to an appropriate size (max of img.ly) and then start trying to compress.
+	
+	while ([imageData length] > 32000 && compression > 0.1) {
+		// NSLog(@"Image size too big, compression more: current data size: %d bytes",[imageData length]);
+		compression -= 0.1;
+		imageData = UIImageJPEGRepresentation([item image], compression);
+	}
+    
+    WXMediaMessage *message = [WXMediaMessage message];
+    [message setThumbImage:item.image];
+    [message setTitle:[item customValueForKey:@"status"]];
+    
+    // Real size image
+    WXEmoticonObject *ext = [WXEmoticonObject object];
+    ext.emoticonData = UIImagePNGRepresentation(item.image);
+    
+    message.mediaObject = ext;
+    
+    SendMessageToWXReq *req = [[[SendMessageToWXReq alloc] init] autorelease];
+    req.bText = NO;
+    req.message = message;
+    
+    [WXApi sendReq:req];
+}
+
 
 #pragma mark - Weixin delegate methods
 
-- (void)onReq:(BaseReq*)req
-{
-    
-}
-
 - (void)onResp:(BaseResp *)resp
 {
+    if (resp.errCode == 0) {
+        // success
+        [self sendDidFinish];
+    }
     
+    else {
+        // fail
+        [self sendDidFailWithError:[SHK error:resp.errStr]];
+    }
 }
 @end
 
