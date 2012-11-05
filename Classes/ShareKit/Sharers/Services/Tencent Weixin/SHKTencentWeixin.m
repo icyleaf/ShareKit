@@ -39,7 +39,7 @@ static NSString *const kSHKTencentWeixinUserInfo = @"kSHKTencentWeixinUserInfo";
 @implementation SHKTencentWeixin
 
 
-+ (SHKTencentWeixin *)sharedWeixin
++ (SHKTencentWeixin *)sharedInstance
 {
     static SHKTencentWeixin *weixin = nil;
     @synchronized([SHKTencentWeixin class]) {
@@ -52,6 +52,9 @@ static NSString *const kSHKTencentWeixinUserInfo = @"kSHKTencentWeixinUserInfo";
     return weixin;
 }
 
+
+#pragma mark - Handle Wx SDK Methods
+
 + (void)registerApp
 {
     [WXApi registerApp:SHKCONFIG(tencentWeixinAppId)];
@@ -59,7 +62,7 @@ static NSString *const kSHKTencentWeixinUserInfo = @"kSHKTencentWeixinUserInfo";
 
 + (BOOL)handleOpenURL:(NSURL*)url
 {
-    return [WXApi handleOpenURL:url delegate:[[[SHKTencentWeixin alloc] init] autorelease]];
+    return [WXApi handleOpenURL:url delegate:[SHKTencentWeixin sharedInstance]];
 }
 
 
@@ -122,22 +125,16 @@ static NSString *const kSHKTencentWeixinUserInfo = @"kSHKTencentWeixinUserInfo";
 
 - (void)show
 {
-    if (item.shareType == SHKShareTypeURL)
+    if (item.shareType == SHKShareTypeURL || item.shareType == SHKShareTypeText)
 	{
 		[item setCustomValue:[NSString stringWithFormat:@"%@: %@", item.title, [item.URL absoluteString]] forKey:@"status"];
+        [self showTencentWeixinForm];
 	}
 	
 	else if (item.shareType == SHKShareTypeImage)
 	{
-		[item setCustomValue:item.title forKey:@"status"];
-	}
-	
-	else if (item.shareType == SHKShareTypeText)
-	{
-		[item setCustomValue:item.text forKey:@"status"];
-	}
-    
-    [self showTencentWeixinForm];
+		[self send];
+	}    
 }
 
 - (void)showTencentWeixinForm
@@ -193,7 +190,7 @@ static NSString *const kSHKTencentWeixinUserInfo = @"kSHKTencentWeixinUserInfo";
 
 - (BOOL)send
 {
-	if ( ! [self validateItemAfterUserEdit])
+	if (item.shareType != SHKShareTypeImage && ! [self validateItemAfterUserEdit])
 		return NO;
 	
     switch (item.shareType) {
@@ -219,59 +216,53 @@ static NSString *const kSHKTencentWeixinUserInfo = @"kSHKTencentWeixinUserInfo";
 - (void)sendStatus
 {
     SendMessageToWXReq *req = [[[SendMessageToWXReq alloc] init] autorelease];
-    req.bText = YES;
-    req.text = [item customValueForKey:@"status"];
+    [req setBText:YES];
+    [req setText:[item customValueForKey:@"status"]];
     
     [WXApi sendReq:req];
+    
+    [self retain];
 }
 
 - (void)sendImage
 {
-    CGFloat compression = 0.9f;
-	NSData *imageData = UIImageJPEGRepresentation([item image], compression);
-	
-	// TODO
-	// Note from Nate to creator of sendImage method - This seems like it could be a source of sluggishness.
-	// For example, if the image is large (say 3000px x 3000px for example), it would be better to resize the image
-	// to an appropriate size (max of img.ly) and then start trying to compress.
-	
-	while ([imageData length] > 32000 && compression > 0.1) {
-		// NSLog(@"Image size too big, compression more: current data size: %d bytes",[imageData length]);
-		compression -= 0.1;
-		imageData = UIImageJPEGRepresentation([item image], compression);
-	}
-    
     WXMediaMessage *message = [WXMediaMessage message];
-    [message setThumbImage:item.image];
-    [message setTitle:[item customValueForKey:@"status"]];
+    // TODO: Fail to set UIImage variable except load from main bundle
+//    [message setThumbImage:[item image]];
     
-    // Real size image
-    WXEmoticonObject *ext = [WXEmoticonObject object];
-    ext.emoticonData = UIImagePNGRepresentation(item.image);
+    WXImageObject *ext = [WXImageObject object];
+    [ext setImageData:UIImagePNGRepresentation([item image])];
+    [message setMediaObject:ext]; 
     
-    message.mediaObject = ext;
-    
-    SendMessageToWXReq *req = [[[SendMessageToWXReq alloc] init] autorelease];
-    req.bText = NO;
-    req.message = message;
+    SendMessageToWXReq* req = [[[SendMessageToWXReq alloc] init] autorelease];
+    [req setBText:NO];
+    [req setMessage:message];
     
     [WXApi sendReq:req];
+    
+    [self retain];
 }
 
 
 #pragma mark - Weixin delegate methods
 
+
 - (void)onResp:(BaseResp *)resp
 {
-    if (resp.errCode == 0) {
-        // success
-        [self sendDidFinish];
+    switch ([resp errCode])
+    {
+        case WXSuccess:
+            [self sendDidFinish];
+            break;
+        case WXErrCodeUserCancel:
+            [self sendDidCancel];
+            break;
+        default:
+            [self sendDidFailWithError:nil];
+            break;
     }
     
-    else {
-        // fail
-        [self sendDidFailWithError:[SHK error:resp.errStr]];
-    }
+    [self release];
 }
 @end
 

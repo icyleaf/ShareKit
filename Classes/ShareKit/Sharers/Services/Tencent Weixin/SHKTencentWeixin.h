@@ -35,6 +35,7 @@
 
 @interface SHKTencentWeixin : SHKOAuthSharer <SHKFormControllerLargeTextFieldDelegate, WXApiDelegate>
 
+
 #pragma mark - Handle Wx SDK Methods
 
 + (void) registerApp;
