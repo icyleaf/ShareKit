@@ -11,11 +11,12 @@
 ## 可用服务
 
 1. 新浪微博 (支持新浪微博官方 SSO OAuth 及 iOS 6 特性）
-2. 网易微博
-3. 腾讯微博
-4. 豆瓣
-5. 人人网
-6. Plurk （融合自[polydice/ShareKit-Sharers](https://github.com/polydice/ShareKit-Sharers)）
+2. 微信（仅支持分享到朋友）
+3. 网易微博
+4. 腾讯微博
+5. 豆瓣
+6. 人人网
+7. Plurk （融合自[polydice/ShareKit-Sharers](https://github.com/polydice/ShareKit-Sharers)）
 
 ## 计划服务
 
