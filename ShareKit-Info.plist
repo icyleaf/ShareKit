@@ -31,6 +31,7 @@
 			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>wx59794006e6eb35f5</string>
 				<string>sinaweibosso.1631351849</string>
 				<string>fb232705466797125</string>
 				<string>app://flickr</string>

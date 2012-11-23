@@ -158,6 +158,16 @@
     return @"";
 }
 
+// Tencent Weixin - http://open.weixin.qq.com
+- (NSString*)tencentWeixinAppId
+{
+    return @"";
+}
+
+- (NSString*)tencentWeixinAppKey
+{
+    return @"";
+}
 
 // Douban - http://www.douban.com/service/apidoc/
 - (NSString*)doubanConsumerKey {
