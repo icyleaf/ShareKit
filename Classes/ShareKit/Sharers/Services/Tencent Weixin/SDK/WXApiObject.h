@@ -245,14 +245,23 @@ enum WXAPISupport {
  */
 +(WXMusicObject *) object;
 
-/** 音乐数据的url地址 
+/** 音乐网页的url地址 
  * @note 长度不能超过10K
  */
 @property (nonatomic, retain) NSString *musicUrl;
-/** 音乐lowband数据的url地址 
+/** 音乐lowband网页的url地址 
  * @note 长度不能超过10K
  */
 @property (nonatomic, retain) NSString *musicLowBandUrl;
+/** 音乐数据url地址
+ * @note 长度不能超过10K
+ */
+@property (nonatomic, retain) NSString *musicDataUrl;
+
+/**音乐lowband数据url地址
+ * @note 长度不能超过10K
+ */
+@property (nonatomic, retain) NSString *musicLowBandDataUrl;
 
 @end
 
@@ -269,11 +278,11 @@ enum WXAPISupport {
  */
 +(WXVideoObject *) object;
 
-/** 视频数据的url地址 
+/** 视频网页的url地址 
  * @note 长度不能超过10K
  */
 @property (nonatomic, retain) NSString *videoUrl;
-/** 视频lowband数据的url地址
+/** 视频lowband网页的url地址
  * @note 长度不能超过10K
  */
 @property (nonatomic, retain) NSString *videoLowBandUrl;
@@ -332,14 +341,12 @@ enum WXAPISupport {
  *
  * 微信终端和第三方程序之间传递消息中包含的表情数据对象。
  * @see WXMediaMessage
- * @note 表情类消息暂不支持发送到朋友圈
  */
 @interface WXEmoticonObject : NSObject
 
 /*! @brief 返回一个WXEmoticonObject对象
  *
  * @note 返回的WXEmoticonObject对象是自动释放的
- * @note 发送表情，thumbData字段必须填，否则无法跳转到微信程序，表情类消息暂不支持发送到朋友圈
  */
 +(WXEmoticonObject *) object;
 
@@ -349,6 +356,5 @@ enum WXAPISupport {
 @property (nonatomic, retain) NSData    *emoticonData;
 
 @end
-
 
 

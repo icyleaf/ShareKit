@@ -32,6 +32,8 @@
 
 @interface SHKTencentWeixin ()
 
+- (NSData *)resizeWithImage:(UIImage*)image scale:(CGFloat)scale compression:(CGFloat)compression;
+
 @end
 
 static NSString *const kSHKTencentWeixinUserInfo = @"kSHKTencentWeixinUserInfo";
@@ -81,14 +83,6 @@ static NSString *const kSHKTencentWeixinUserInfo = @"kSHKTencentWeixinUserInfo";
 
 + (BOOL)canShareText
 {
-    if ([WXApi isWXAppInstalled]) {
-        NSLog(@"isWXAppInstalled");
-    }
-    
-    if ([WXApi isWXAppSupportApi]) {
-         NSLog(@"isWXAppSupportApi");
-    }
-    
 	return ([WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]);
 }
 
@@ -125,12 +119,18 @@ static NSString *const kSHKTencentWeixinUserInfo = @"kSHKTencentWeixinUserInfo";
 
 - (void)show
 {
-    if (item.shareType == SHKShareTypeURL || item.shareType == SHKShareTypeText)
+    if (item.shareType == SHKShareTypeURL)
 	{
 		[item setCustomValue:[NSString stringWithFormat:@"%@: %@", item.title, [item.URL absoluteString]] forKey:@"status"];
         [self showTencentWeixinForm];
 	}
 	
+    else if (item.shareType == SHKShareTypeText)
+    {
+        [item setCustomValue:[item text] forKey:@"status"];
+        [self showTencentWeixinForm];
+    }
+    
 	else if (item.shareType == SHKShareTypeImage)
 	{
 		[self send];
@@ -192,7 +192,7 @@ static NSString *const kSHKTencentWeixinUserInfo = @"kSHKTencentWeixinUserInfo";
 {
 	if (item.shareType != SHKShareTypeImage && ! [self validateItemAfterUserEdit])
 		return NO;
-	
+    
     switch (item.shareType) {
             
         case SHKShareTypeURL:
@@ -220,27 +220,49 @@ static NSString *const kSHKTencentWeixinUserInfo = @"kSHKTencentWeixinUserInfo";
     [req setText:[item customValueForKey:@"status"]];
     
     [WXApi sendReq:req];
-    
-    [self retain];
 }
 
 - (void)sendImage
 {
+    CGFloat compression = 0.9f;
+    NSData *imageData = [self resizeWithImage:[item image] scale:compression compression:compression];
+
+    // Webchat limit thumb image size is 32kb, so if the image is bigger than that, it will process
+    // for resize and compression.
+	while ([imageData length] > 32768 && compression > 0.1)
+    {
+		compression -= 0.1;
+        imageData = [self resizeWithImage:[item image] scale:compression compression:compression];
+	}
+    
+    UIImage *thumb = [UIImage imageWithData:imageData];
+    
     WXMediaMessage *message = [WXMediaMessage message];
-    // TODO: Fail to set UIImage variable except load from main bundle
-//    [message setThumbImage:[item image]];
+    [message setThumbImage:thumb];
     
     WXImageObject *ext = [WXImageObject object];
     [ext setImageData:UIImagePNGRepresentation([item image])];
-    [message setMediaObject:ext]; 
+    [message setMediaObject:ext];
     
     SendMessageToWXReq* req = [[[SendMessageToWXReq alloc] init] autorelease];
     [req setBText:NO];
     [req setMessage:message];
     
     [WXApi sendReq:req];
+}
+
+#pragma mark - Image process
+
+- (NSData *)resizeWithImage:(UIImage*)image scale:(CGFloat)scale compression:(CGFloat)compression
+{
+    CGSize newSize = CGSizeMake(image.size.width * scale, image.size.height * scale);
     
-    [self retain];
+    UIGraphicsBeginImageContext(newSize);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return UIImageJPEGRepresentation(newImage, compression);
 }
 
 
@@ -261,8 +283,6 @@ static NSString *const kSHKTencentWeixinUserInfo = @"kSHKTencentWeixinUserInfo";
             [self sendDidFailWithError:nil];
             break;
     }
-    
-    [self release];
 }
 @end
 
