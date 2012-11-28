@@ -18,9 +18,13 @@
 6. 人人网
 7. Plurk （融合自[polydice/ShareKit-Sharers](https://github.com/polydice/ShareKit-Sharers)）
 
-## 计划服务
+## 快速链接
 
-> 暂无（如果有需求可以提 Issue，但不一定会考虑 XD）
+* [新功能](https://github.com/icyleaf/ShareKit/issues?labels=enhancement)
+* [修复缺陷](https://github.com/icyleaf/ShareKit/issues?labels=bug)
+* [答疑解惑](https://github.com/icyleaf/ShareKit/issues?labels=question)
+
+没有发现我想要的，希望[提交新需求](https://github.com/icyleaf/ShareKit/issues/new)
 
 
 # 未来特性
