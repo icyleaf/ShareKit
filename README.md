@@ -1,5 +1,7 @@
 # 关于 ShareKit
 
+> 项目**不再**维护开发。
+
 [Sharekit](https://github.com/ShareKit/ShareKit) 在社区的驱动下迎来了 2.0 版本的重生（原开发者已不再维护）。
 
 `develop` 分支是基于社区驱动的基础上支持开发，因此今后的更新都是在当前分支。
